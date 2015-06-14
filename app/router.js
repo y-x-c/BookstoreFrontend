@@ -6,6 +6,13 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.resource('admin');
+
+  this.route('admin', function() {
+    this.route('books', function() {
+      this.route('new');
+    });
+  });
 });
 
 export default Router;

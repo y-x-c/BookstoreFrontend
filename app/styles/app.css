@@ -1,0 +1,42 @@
+body {
+  padding-top: 50px;
+}
+
+.sidebar {
+  position: fixed;
+  padding: 20px;
+  top: 51px;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #f5f5f5;
+  border-right: 1px solid #EEEEEE;
+}
+
+.nav-sidebar {
+  margin-left: -20px;
+  margin-right: -21px;
+  margin-bottom: 20px;
+}
+
+.nav-sidebar > li > a {
+  padding-left: 20px;
+}
+
+.nav-sidebar > li > a.active {
+  color: #fff;
+  background: #428bca;
+}
+
+.admin-main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}

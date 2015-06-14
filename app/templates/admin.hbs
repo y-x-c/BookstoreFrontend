@@ -1,0 +1,37 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Bookstore - Dashboard</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li>
+                  {{#link-to 'admin.index'}}Overview{{/link-to}}
+                </li>
+                <li>
+                  {{#link-to 'admin.books.new'}}Add a new book{{/link-to}}
+                </li>
+                <li>
+                    <a href="/admin/books/new">Authors</a>
+                </li>
+
+                <li>
+                    <a href="/">Publishers</a>
+                </li>
+                <li>
+                    <a href="/">Customers</a>
+                </li>
+                <li>
+                    <a href="/">Orders</a>
+                </li>
+            </ul>
+        </div>
+
+      {{outlet}}
+    </div>
+</div>
