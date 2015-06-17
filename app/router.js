@@ -6,12 +6,16 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.resource('admin');
+  this.route('admin');
 
   this.route('admin', function() {
     this.route('books', function() {
       this.route('new');
     });
+  });
+
+  this.route('store', { path: '/' } , function() {
+    this.route('book', { path: '/books/:ISBN' });
   });
 });
 
