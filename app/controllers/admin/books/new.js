@@ -19,70 +19,7 @@ export default Ember.Controller.extend({
         book.set("publisher", publisher);
         book.save();
       });
-    },
-
-    selectSuggestion: function(suggestion) {
-      this.set('publisher', suggestion.get('name'));
-    },
-
-    moveSuggestionDown: function() {
-      var current = this.get('current');
-      var last = current;
-      var suggestions = this.get('suggestions');
-
-      if(current === null) {
-        current = 0;
-        this.set('current', current);
-      } else {
-        current = (current + 1) % this.get('suggestionsLength');
-        this.set('current', current);
-      }
-
-      suggestions && suggestions.then(function(suggestions) {
-        if(suggestions.get('length')) {
-          suggestions.objectAt(last).set('selected', false);
-          suggestions.objectAt(current).set('selected', true);
-        }
-      });
-    },
-
-    moveSuggestionUp: function() {
-
     }
-  },
+  }
 
-  current: null,
-
-  suggestions: function() {
-    var self = this;
-    var publisher = this.get('publisher');
-
-    if (!publisher) {
-      return null;
-    }
-
-    this.set('current', 0);
-    var results = this.store.find('publisher', {name: this.get('publisher')});
-
-    return results;
-  }.property('publisher'),
-
-  //tricky
-  suggestionsLength: Ember.computed("suggestions", {
-    set: function (key, value) {
-      return value;
-    },
-    get: function() {
-      var suggestions = this.get('suggestions');
-      var self = this;
-
-      suggestions && suggestions.then(function(suggestions) {
-        self.set('suggestionsLength', suggestions.get('length'));
-      });
-    }
-  }),
-
-  hasSuggestion: function() {
-    return this.get('suggestionsLength') > 0;
-  }.property('suggestionsLength')
 });

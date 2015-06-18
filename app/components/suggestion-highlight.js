@@ -8,7 +8,6 @@ export default Ember.Component.extend({
   },
 
   selected: function() {
-    console.log('current ' + this.get('current') + ' index ' + this.get('index'));
     if(this.get('current') === this.get('index')) return true;
     return false;
   }.property('current', 'index'),

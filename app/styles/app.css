@@ -70,3 +70,14 @@ body {
 .autocomplete li:hover, .autocomplete .suggestionSelected {
   background: #EEEEEE;
 }
+
+.autocomplete {
+  transition: all 0.15s ease;
+  opacity: 0;
+  /*display: none;*/
+}
+
+.autocomplete.displaySuggestions {
+  opacity: 1;
+  /*display: block;*/
+}
