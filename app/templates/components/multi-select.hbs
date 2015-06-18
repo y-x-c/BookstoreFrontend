@@ -1,0 +1,9 @@
+{{auto-complete _class=_class _id=_id _placeholder=_placeholder textValue=textValue
+store=store modelName=modelName term=term value=value preventEnter=false}}
+
+{{#each values as |value index|}}
+    <div class="test">
+      {{value.name}}
+        <span class="glyphicon glyphicon-remove" {{action "removeValue" value}}></span>
+    </div>
+{{/each}}

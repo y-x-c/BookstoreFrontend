@@ -1,11 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+
   actions: {
     selectSuggestion: function(suggestion) {
-      this.set('_value', suggestion.get(this.get('term')));
+      this.set('textValue', suggestion.get(this.get('term')));
       this.set('shouldDisplay', false);
-      this.set('sendRequest', true);
+      this.set('sendRequest', false);
+      this.set('value', suggestion);
+      this.set('suggestions', null);
     },
 
     moveSuggestionDown: function() {
@@ -37,34 +40,39 @@ export default Ember.Component.extend({
     //prevent send request during typing
     var self = this;
 
-    var __value = self.get('_value');
+    var oldTextValue = self.get('textValue');
     // set time out
+
     var func = function () {
-      if(self.get('_value') === __value && self.get('lastValue') != __value) {
-        this.set('sendRequest', true);
-        this.set('lastValue', __value);
+      var currentTextValue = self.get('textValue');
+      if(currentTextValue === oldTextValue && self.get('lastRequestValue') != oldTextValue) {
+        self.set('sendRequest', true);
+        self.set('lastRequestValue', oldTextValue);
+        self.set('shouldDisplay', true);
       }
     };
 
     Ember.run.later(this, func, 200);
   },
 
+  preventEnter: true,
+
   keyDown: function(event) {
     var self = this;
     if(this.get('hasSuggestion')) {
       this.set('shouldDisplay', true);
-      
+
       if(event.keyCode == 38) { // up
         this.send('moveSuggestionUp');
-        event.preventDefault();
       } else if (event.keyCode == 40) { //down
         this.send('moveSuggestionDown');
-        event.preventDefault();
       } else if (event.keyCode == 13 || event.keyCode == 9) { //enter && tab
         this.get('suggestions').then(function(suggestions) {
           self.send('selectSuggestion', suggestions.objectAt(self.get('current')));
         });
-        event.preventDefault();
+        if(event.keyCode == 13 && this.get('preventEnter')) {
+          event.preventDefault();
+        }
       } else if (event.keyCode == 27) { //esc
         this.set('shouldDisplay', false);
       }
@@ -73,43 +81,50 @@ export default Ember.Component.extend({
 
   current: 0,
   sendRequest: false,
-  lastValue: null,
+  lastRequestValue: null,
   suggestionsCached: null,
 
-  suggestions: function() {
-    if(this.get('sendRequest')) {
-      this.set('sendRequest', false);
-      var value = this.get('_value');
-      console.log(value);
+  suggestions: Ember.computed("sendRequest", {
+    get: function() {
+      if (this.get('sendRequest')) {
+        this.set('sendRequest', false);
+        var value = this.get('textValue');
 
-      if (!value) {
-        return null;
+        if (!value) {
+          return null;
+        }
+
+        this.set('current', 0);
+        var term = this.get('term');
+        var jsonstring = '{"' + term + '": "' + value + '"}';
+        var results = this.get('store').find(this.get('modelName'), JSON.parse(jsonstring));
+
+        this.set('suggestionsCached', results);
+        return results;
+      } else {
+        return this.get('suggestionsCached');
       }
-
-      this.set('current', 0);
-      var term = this.get('term');
-      var jsonstring = '{"' + term + '": "' + value + '"}';
-      var results = this.get('store').find(this.get('modelName'), JSON.parse(jsonstring));
-
-      this.set('suggestionsCached', results);
-      return results;
-    } else {
-      return this.get('suggestionsCached');
+    },
+    set: function(key, value) {
+      this.set('suggestionsCached', value);
+      return value;
     }
-  }.property('sendRequest'),
+  }),
 
-  //tricky
+  suggestionsLengthCached: null,
   suggestionsLength: Ember.computed("suggestions", {
     set: function (key, value) {
+      this.set('suggestionsLengthCached', value);
       return value;
     },
     get: function() {
       var suggestions = this.get('suggestions');
       var self = this;
 
-      suggestions && suggestions.then(function(suggestions) {
+      !!suggestions && suggestions.then(function(suggestions) {
         self.set('suggestionsLength', suggestions.get('length'));
       });
+      return this.get('suggestionsLengthCached');
     }
   }),
 
@@ -121,6 +136,7 @@ export default Ember.Component.extend({
 
   displaySuggestions: Ember.computed("shouldDisplay", "hasSuggestion", {
     get: function() {
+      //console.log(this.get('shouldDisplay') + " " + this.get('suggestionsLength'));
       return this.get('shouldDisplay') && this.get('hasSuggestion');
     }
   })
