@@ -12,6 +12,14 @@ Router.map(function() {
     this.route('books', function() {
       this.route('new');
     });
+
+    this.route('authors', function() {
+      this.route('new');
+    });
+
+    this.route('publishers', function() {
+      this.route('new');
+    });
   });
 
   this.route('store', { path: '/' } , function() {

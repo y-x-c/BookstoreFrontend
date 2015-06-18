@@ -40,3 +40,33 @@ body {
     padding-left: 40px;
   }
 }
+
+.autocomplete {
+  position: absolute;
+  z-index: 1001;
+  background-color: white;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  list-style-type:none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.autocomplete li {
+  /*margin: 6px 0px;*/
+  padding: 0px 12px;
+  font-size: 14px;
+  line-height: 2em;
+
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+.autocomplete li:hover, .autocomplete .suggestionSelected {
+  background: #EEEEEE;
+}
