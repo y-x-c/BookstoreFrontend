@@ -1,0 +1,110 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">New books arrive</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+          {{#if book}}
+          {{else}}
+              <div class="form-group">
+                  <label for="inputBook" class="col-sm-3 control-label">Book</label>
+                  <div class="col-sm-8">
+                      <!--<input type="text" class="form-control" id="inputPublisher" placeholder="Publisher">-->
+                    {{auto-complete-books _class="form-control" _id="inputBook" _placeholder="Search a book"
+                    store=this.store modelName="book" term="all" value=book}}
+                  </div>
+              </div>
+          {{/if}}
+
+          {{#if book}}
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Title</label>
+                  <div class="col-sm-8">
+                      <p class="form-control-static">{{book.title}}</p>
+                  </div>
+              </div>
+            {{#if book.subtitle}}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Subtitle</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{book.subtitle}}</p>
+                    </div>
+                </div>
+            {{/if}}
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Publisher</label>
+                  <div class="col-sm-8">
+                      <!--<input type="text" class="form-control" id="inputPublisher" placeholder="Publisher">-->
+                      <p class="form-control-static">{{book.publisher.name}}</p>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Author</label>
+                  <div class="col-sm-8">
+                      <p class="form-control-static">{{#each authors as |author|}}{{author.name}} {{/each}}</p>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputAmount" class="col-sm-3 control-label">Amount</label>
+                  <div class="col-sm-8">
+                      <!--<input type="number" class="form-control" id="inputAmount" placeholder="Amount">-->
+                    {{input type="number" class="form-control" id="inputAmount" placeholder="Amount" value=book.amount}}
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Price</label>
+                  <div class="col-sm-8">
+                      <div class="input-group">
+                          <p class="form-control-static">{{book.price}}</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">Publication Date</label>
+                  <div class="col-sm-8">
+                    {{!input type="date" class="form-control input" id="inputPubdate" placeholder="Publication Date" value=pubdate}}
+                      <p class="form-control-static">{{book.pubdate}}</p>
+                  </div>
+              </div>
+            {{#if book.format}}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Format</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{book.format}}</p>
+                    </div>
+                </div>
+            {{/if}}
+            {{#if book.subject}}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Subject</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{book.subject}}</p>
+                    </div>
+                </div>
+            {{/if}}
+            {{#if book.keyword}}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Keyword</label>
+                    <div class="col-sm-8">
+                        <p class="form-control-static">{{book.keyword}}</p>
+                    </div>
+                </div>
+            {{/if}}
+            {{#if book.summary}}
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Summary</label>
+                    <div class="col-sm-8">
+                        <pre class="form-control-static">{{book.summary}}</pre>
+                    </div>
+                </div>
+            {{/if}}
+              <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-8">
+                      <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                      <button {{action 'submit'}} class="btn btn-primary">Submit</button>
+                  </div>
+              </div>
+          {{/if}}
+        </form>
+    </div>
+</div>

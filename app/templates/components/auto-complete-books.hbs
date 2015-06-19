@@ -1,0 +1,12 @@
+{{input type="text" class=_class id=_id placeholder=_placeholder value=textValue
+escape-press='moveSuggestionDown' autocomplete="off" spellcheck="false"}}
+
+<ul {{bind-attr class=":autocomplete displaySuggestions:displaySuggestions"}} >
+  {{#each suggestions as |suggestion index|}}
+    {{#suggestion-highlight index=index current=current suggestion=suggestion
+    action="selectSuggestion"}}
+      {{suggestion.title}}
+        <small>{{suggestion.id}}</small>
+    {{/suggestion-highlight}}
+  {{/each}}
+</ul>

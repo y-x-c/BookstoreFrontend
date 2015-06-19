@@ -4,7 +4,7 @@ export default Ember.Component.extend({
 
   actions: {
     selectSuggestion: function(suggestion) {
-      this.set('textValue', suggestion.get(this.get('term')));
+      this.set('textValue', suggestion.get('title'));
       this.set('shouldDisplay', false);
       this.set('sendRequest', false);
       this.set('value', suggestion);

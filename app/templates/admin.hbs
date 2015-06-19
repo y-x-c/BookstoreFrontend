@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-xs-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li>
                   {{#link-to 'admin.index'}}Overview{{/link-to}}
@@ -19,22 +19,20 @@
                 </li>
 
                 <li>
+                  {{#link-to 'admin.books.arrive'}}New books arrive{{/link-to}}
+                </li>
+
+                <li>
                   {{#link-to 'admin.authors.new'}}Add a new author{{/link-to}}
                 </li>
 
                 <li>
                   {{#link-to 'admin.publishers.new'}}Add a new publisher{{/link-to}}
                 </li>
-
-                <li>
-                    <a href="/">Customers</a>
-                </li>
-                <li>
-                    <a href="/">Orders</a>
-                </li>
             </ul>
         </div>
-
-      {{outlet}}
+        <div class="col-xs-9 col-xs-offset-3 col-md-10 col-md-offset-2 admin-main">
+          {{outlet}}
+        </div>
     </div>
 </div>

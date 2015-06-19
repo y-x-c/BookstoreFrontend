@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('admin', function() {
     this.route('books', function() {
       this.route('new');
+      this.route('arrive');
     });
 
     this.route('authors', function() {

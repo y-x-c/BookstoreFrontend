@@ -15,7 +15,13 @@ export default Ember.Controller.extend({
         summary: this.get('summary')
       });
       book.get("authors").addObjects(this.get('authors'));
-      book.save();
+
+      book.save(function(response) {
+
+      },
+      function(book) {
+        book.destroyRecord();
+      });
 
       //var self = this;
       //this.store.find("author", 1).then(function (author) {
