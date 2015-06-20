@@ -16,6 +16,7 @@ export default Ember.Controller.extend({
       });
       book.get("authors").addObjects(this.get('authors'));
 
+      // todo give user feedback
       book.save(function(response) {
 
       },
@@ -23,14 +24,6 @@ export default Ember.Controller.extend({
         book.destroyRecord();
       });
 
-      //var self = this;
-      //this.store.find("author", 1).then(function (author) {
-      //  book.get("authors").addObject(author);
-      //  self.store.find("author", 2).then(function (author) {
-      //    book.get("authors").addObject(author);
-      //    book.save();
-      //  });
-      //});
     }
   },
 
