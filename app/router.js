@@ -23,6 +23,7 @@ Router.map(function() {
 
     this.route('publishers', function() {
       this.route('new');
+      this.route('popular');
     });
   });
 
