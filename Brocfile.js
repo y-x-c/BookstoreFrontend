@@ -17,13 +17,18 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-app.import('bower_components/bootstrap/dist/css/bootstrap.css');
+app.import(app.bowerDirectory +'/moment/moment.js');
 
-app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', {
+app.import(app.bowerDirectory +'/bootstrap-daterangepicker/daterangepicker.js');
+app.import(app.bowerDirectory +'/bootstrap-daterangepicker/daterangepicker-bs3.css');
+
+app.import(app.bowerDirectory +'/bootstrap/dist/css/bootstrap.css');
+
+app.import(app.bowerDirectory +'/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', {
   destDir: 'fonts'
 });
 
-app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', {
+app.import(app.bowerDirectory +'/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', {
   destDir: 'fonts'
 });
 

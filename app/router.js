@@ -12,6 +12,9 @@ Router.map(function() {
     this.route('books', function() {
       this.route('new');
       this.route('arrive');
+      this.route('popular', function() {
+        this.route('show', { path: '/:st_date/:ed_date'});
+      });
     });
 
     this.route('authors', function() {
