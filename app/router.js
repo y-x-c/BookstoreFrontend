@@ -25,6 +25,11 @@ Router.map(function() {
       this.route('new');
       this.route('popular');
     });
+
+    this.route('customers', function() {
+      this.route('trusted');
+      this.route('useful');
+    });
   });
 
   this.route('store', { path: '/' } , function() {
