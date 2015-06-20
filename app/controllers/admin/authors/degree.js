@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
       var namespace = this.store.adapterFor('application').get('namespace');
       var url = [host, namespace, "authors/degree"].join('/');
       url += "?author1=" + this.get('author1').get('id') + "&author2=" + this.get('author2').get('id');
-      console.log(url);
+      //console.log(url);
 
       var self = this;
       Ember.$.getJSON(url).then(function(_result) {
