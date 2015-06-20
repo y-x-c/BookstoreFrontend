@@ -49,6 +49,7 @@ export default Ember.Component.extend({
         self.set('sendRequest', true);
         self.set('lastRequestValue', oldTextValue);
         self.set('shouldDisplay', true);
+        self.set('value', null);
       }
     };
 
@@ -96,7 +97,8 @@ export default Ember.Component.extend({
 
         this.set('current', 0);
         var term = this.get('term');
-        var jsonstring = '{"' + term + '": "' + value + '"}';
+        var jsonstring = '{"' + term + '": "' + value + '","limit": 5' + '}';
+        //console.log(jsonstring);
         var results = this.get('store').find(this.get('modelName'), JSON.parse(jsonstring));
 
         this.set('suggestionsCached', results);

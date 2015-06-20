@@ -46,6 +46,7 @@ export default Ember.Component.extend({
     var func = function () {
       var currentTextValue = self.get('textValue');
       if(currentTextValue === oldTextValue && self.get('lastRequestValue') != oldTextValue) {
+        self.set('value', null);
         self.set('sendRequest', true);
         self.set('lastRequestValue', oldTextValue);
         self.set('shouldDisplay', true);
@@ -96,7 +97,7 @@ export default Ember.Component.extend({
 
         this.set('current', 0);
         var term = this.get('term');
-        var jsonstring = '{"' + term + '": "' + value + '"}';
+        var jsonstring = '{"' + term + '": "' + value + '","limit": 5' + '}';
         var results = this.get('store').find(this.get('modelName'), JSON.parse(jsonstring));
 
         this.set('suggestionsCached', results);

@@ -16,6 +16,7 @@ Router.map(function() {
 
     this.route('authors', function() {
       this.route('new');
+      this.route('degree');
     });
 
     this.route('publishers', function() {
