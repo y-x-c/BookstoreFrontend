@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="col-sm-5 col-xs-12 pull-right">
+        <div id="signupPanel" class="panel panel-default">
+            <!--<div class="panel-heading">-->
+            <!--<h3 class="panel-title">Log in</h3>-->
+            <!--</div>-->
+            <div class="panel-body">
+                <form>
+                    <div {{bind-attr class=":form-group errorUsr:has-feedback errorUsr:has-error"}} >
+                        <label for="inputUsername" class="control-label">Username</label>
+                      {{input type="text" class="form-control" id="inputUsername" placeholder="Username" value=username}}
+                      {{#if errorUsr}}
+                          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                          <span id="inputUsernameStatus" class="sr-only">(failed)</span>
+                      {{/if}}
+                    </div>
+                    <div {{bind-attr class=":form-group errorPwd:has-feedback errorPwd:has-error"}} >
+                        <label for="inputPassword" class="control-label">Password</label>
+                      {{input type="password" class="form-control" id="inputPassword" placeholder="Password" value=password}}
+                      {{#if errorPwd}}
+                          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                          <span id="inputPasswordStatus" class="sr-only">(failed)</span>
+                      {{/if}}
+                    </div>
+                    <div {{bind-attr class=":form-group errorPwd2:has-feedback errorPwd2:has-error"}} >
+                        <label for="inputPassword2" class="control-label">Confirm Your Password</label>
+                      {{input type="password" class="form-control" id="inputPassword2" placeholder="Password" value=password2}}
+                      {{#if errorPwd2}}
+                          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                          <span id="inputPassword2Status" class="sr-only">(failed)</span>
+                      {{/if}}
+                    </div>
+                    <div {{bind-attr class=":form-group errorName:has-feedback errorName:has-error"}} >
+                        <label for="inputName" class="control-label">Name</label>
+                      {{input type="text" class="form-control" id="inputName" placeholder="Name" value=name}}
+                      {{#if errorName}}
+                          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                          <span id="inputNameStatus" class="sr-only">(failed)</span>
+                      {{/if}}
+                    </div>
+                    <div {{bind-attr class=":form-group errorEmail:has-feedback errorEmail:has-error"}} >
+                        <label for="inputEmail" class="control-label">Email</label>
+                      {{input type="email" class="form-control" id="inputEmail" placeholder="Email" value=email}}
+                      {{#if errorEmail}}
+                          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                          <span id="inputEmailStatus" class="sr-only">(failed)</span>
+                      {{/if}}
+                    </div>
+                    <div {{bind-attr class=":form-group errorPhone:has-feedback errorPhone:has-error"}} >
+                        <label for="inputPhone" class="control-label">Phone</label>
+                      {{input type="text" class="form-control" id="inputPhone" placeholder="Phone" value=phone}}
+                      {{#if errorPhone}}
+                          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                          <span id="inputPhoneStatus" class="sr-only">(failed)</span>
+                      {{/if}}
+                    </div>
+
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <button {{action 'signup'}} class="btn btn-primary"
+                              {{bind-attr disabled=invalid}}>Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

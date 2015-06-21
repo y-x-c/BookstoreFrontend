@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
+  //tagName: '',
   actions: {
     selectSuggestion: function(suggestion) {
       this.set('textValue', suggestion.get('title'));

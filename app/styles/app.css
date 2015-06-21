@@ -1,7 +1,3 @@
-body {
-  padding-top: 50px;
-}
-
 .sidebar {
   position: fixed;
   padding: 20px;
@@ -33,7 +29,9 @@ body {
 
 .admin-main {
   padding: 20px;
+  padding-top: 70px;
 }
+
 @media (min-width: 768px) {
   .main {
     padding-right: 40px;
