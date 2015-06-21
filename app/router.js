@@ -33,9 +33,10 @@ Router.map(function() {
   });
 
   this.route('store', { path: '/' } , function() {
-    this.route('book', { path: '/books/:ISBN' });
+    this.route('book', { path: '/books/:id' });
     this.route('login');
     this.route('signup');
+    this.route('search');
   });
 });
 

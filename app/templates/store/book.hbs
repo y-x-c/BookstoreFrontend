@@ -1,1 +1,66 @@
-{{outlet}}
+<div class="container">
+    <div class="page-header">
+        <h2>《{{model.title}}》<small>{{model.subtitle}}</small></h2>
+    </div>
+    <div class="col-sm-12 book-main">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="#" class="thumbnail">
+                    <img src="http://img3.douban.com/lpic/s28012945.jpg" alt="...">
+                </a>
+            </div>
+            <div class="col-sm-7 col-sm-offset-1 book-info">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>ISBN</td>
+                        <td>{{model.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>Publisher</td>
+                        <td>{{model.publisher.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Author</td>
+                        <td>{{#each model.authors as |author|}}{{#link-to 'store'}}{{author.name}}{{/link-to}} {{/each}}</td>
+                    </tr>
+                    <tr>
+                        <td>Amount</td>
+                        <td>{{model.amount}}</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>￥{{model.price}}</td>
+                    </tr>
+                    <tr>
+                        <td>Publication Date</td>
+                        <td>{{print-date date=model.date}}</td>
+                    </tr>
+                    <tr>
+                        <td>Format</td>
+                        <td>{{model.format}}</td>
+                    </tr>
+                    <tr>
+                        <td>Subject</td>
+                        <td>{{model.subject}}</td>
+                    </tr>
+                    <tr>
+                        <td>Keyword</td>
+                        <td>{{model.Keyword}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <!--<div class="panel-heading">-->
+                <!--<h5 style="margin: 0 auto;">Summary</h5>-->
+            <!--</div>-->
+            <div class="panel-body">
+                <p style="font-size: 13px; margin: 0">{{model.summary}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>

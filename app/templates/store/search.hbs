@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="page-header row">
+        <div class="col-xs-3">
+            <h1>Search</h1>
+        </div>
+        <div class="col-xs-8">
+            <form role="search" {{action 'search'}} style="margin-top:30px">
+                <div class="form-group">
+                  {{auto-complete-books-nav _class="form-control" _id="inputBook" _placeholder="Search a book"
+                  store=this.store modelName="book" term="all" textValue=keywords search="search"}}
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 search-sidebar">
+            <div class="list-group">
+                <a href="#" class="list-group-item active">
+                    <p class="list-group-item-text">year desc</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <p class="list-group-item-text">year asc</p>
+                </a>
+                <a href="#" class="list-group-item">
+                    <p class="list-group-item-text">year desc</p>
+                </a>
+            </div>
+            <p>{{#link-to 'store'}}Advanced search{{/link-to}}</p>
+        </div>
+
+        <div class="col-sm-8 search-main">
+            <div class="result-head" style="margin-bottom:15px; border-bottom: 1px solid lightgrey;">
+                <h4>We've found 791,141 results</h4>
+            </div>
+          {{#each model as |book|}}
+              <div class="book-list row" style="margin-bottom:15px; border-bottom: 1px solid lightgrey;">
+                  <div class="col-xs-9">
+                      <h3>{{#link-to 'store.book' book}}《{{book.title}}》{{/link-to}} <small>{{book.subtitle}}</small></h3>
+                      <h5>
+                        {{print-date date=book.pubdate}} By
+                        {{#each book.authors as |author|}}{{#link-to 'store'}}{{author.name}}{{/link-to}} {{/each}}
+                      </h5>
+                  </div>
+                  <div class="col-xs-2 pull-right book-list-cart" style="margin-top: 20px">
+                      <h4><i class="glyphicon glyphicon-shopping-cart"></i> ￥{{book.price}}</h4>
+                  </div>
+                  <div class="col-xs-12">
+                      <p class="text-muted" style="max-height: 80px; overflow: hidden; text-overflow: ellipsis ">
+                        {{book.summary}}
+                      </p>
+                  </div>
+              </div>
+          {{/each}}
+        </div>
+
+
+    </div>
+</div>

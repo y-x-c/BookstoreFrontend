@@ -95,3 +95,11 @@
   color: dimgray;
   top: 2px;
 }
+
+.book-info {
+
+}
+
+.book-info tr:first-child td {
+  border-top: 0px solid grey;
+}

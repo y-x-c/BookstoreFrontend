@@ -8,6 +8,9 @@ export default Ember.Controller.extend({
     logout: function() {
       this.set('customer', null);
       this.store.init();
+    },
+    search: function() {
+      this.transitionToRoute('store.search', {queryParams:{all: this.get('keywords')}});
     }
   },
 

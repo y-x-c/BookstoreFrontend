@@ -11,16 +11,16 @@
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                  {{auto-complete-books-nav _class="form-control" _id="inputBook" _placeholder="Search a book"
-                  store=this.store modelName="book" term="all" value=book}}
-                </div>
-            </form>
+            <!--<form class="navbar-form navbar-left" role="search" {{action 'search'}}>-->
+                <!--<div class="form-group">-->
+                  <!--{{!auto-complete-books-nav _class="form-control" _id="inputBook" _placeholder="Search a book"-->
+                  <!--store=this.store modelName="book" term="all" textValue=keywords search="search"}}-->
+                <!--</div>-->
+            <!--</form>-->
 
             <ul class="nav navbar-nav">
               {{#if customer}}
-                  <li>{{#link-to 'store'}}Advanced Search{{/link-to}}</li>
+                  <li>{{#link-to 'store.search'}}Search{{/link-to}}</li>
                   <li>{{#link-to 'store'}}Orders{{/link-to}}</li>
                   <li>{{#link-to 'store'}}Cart{{/link-to}}</li>
               {{/if}}
