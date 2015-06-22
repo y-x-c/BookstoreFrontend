@@ -20,18 +20,41 @@ export default Ember.Controller.extend({
         });
         feedback.save();
       }
+    },
+    add2Cart: function() {
+      var self = this;
+      this.store.find('cart', this.get('customer.id')
+        + '-' + this.get('model.id')).then(function(oldItem) {
+
+        if(oldItem){
+          oldItem.set('amount', oldItem.get('amount') + Number(self.get('amount')));
+          oldItem.save();
+        } else {
+          var cartItem = self.store.createRecord('cart', {
+            book: self.get('model'),
+            amount: self.get('amount'),
+            customer: self.get('customer')
+          });
+          cartItem.save();
+        }
+      });
     }
   },
 
   ownFeedback: Ember.computed('customer', {
     get: function() {
       var customer = this.get('customer');
+
       if(!customer) return null;
 
       var self = this;
       return this.store.filter('feedback', function(feedback) {
-        return feedback.get('book.id') == self.get('model.id') &&
-          feedback.get('customer.id') == customer.id;
+        //console.log(feedback.get('id'), feedback.get('book.id'), self.get('model.id'));
+        var feedbackBook = feedback.get('book.id'),
+          modelBook = self.get('model.id'),
+          feedbackCustomer = feedback.get('customer.id'),
+          customer = self.get('customer.id');
+        return feedbackBook === modelBook && feedbackCustomer === customer;
       });
     }
   })

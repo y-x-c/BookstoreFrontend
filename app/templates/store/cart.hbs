@@ -1,7 +1,7 @@
 <div class="container">
     <div class="page-header">
         <!--<div class="col-sm-8">-->
-        <h2>{{customer.name}}</h2>
+        <h2>Shopping Cart</h2>
         <!--</div>-->
         <!--<h4 class="pull-right"><i class="glyphicon glyphicon-shopping-cart"></i></h4>-->
     </div>
@@ -11,23 +11,22 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Time</th>
-                    <th>Address</th>
+                    <th>Title</th>
+                    <th>Amount</th>
+                    <th>Unit Price</th>
                 </tr>
                 </thead>
                 <tbody>
-                {{#each customer.orders as |order|}}
-                <tr>
-                    <th>{{#link-to 'store.order' order}}{{order.id}}{{/link-to}}</th>
-                    <th>{{order.time}}</th>
-                    <th>{{order.address}}</th>
-                </tr>
+                {{#each cart as |item|}}
+                    <tr>
+                        <td>{{#link-to 'store.book' item.book}}{{item.book.id}}{{/link-to}}</td>
+                        <td>{{#link-to 'store.book' item.book}}{{item.book.title}}{{/link-to}}</td>
+                        <td>{{item.amount}}</td>
+                        <td>{{item.book.price}}</td>
+                    </tr>
                 {{/each}}
                 </tbody>
             </table>
         </div>
     </div>
-
-
-
 </div>

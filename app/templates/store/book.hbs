@@ -33,7 +33,7 @@
                     </tr>
                     <tr>
                         <td>Price</td>
-                        <td>￥{{!model.price}}</td>
+                        <td>￥{{model.price}}</td>
                     </tr>
                     <tr>
                         <td>Publication Date</td>
@@ -58,7 +58,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-7">
             <div class="book-summary">
                 <h4>Summary</h4>
                 <p style="font-size: 13px; margin: 0">{{model.summary}}</p>
@@ -98,11 +98,24 @@
         </div>
 
 
-        <div class="col-sm-4">
-            <!--Add into cart-->
-            <!--<div class="book-cart">-->
-            <!--<h3><i class="glyphicon glyphicon-shopping-cart"></i> ￥{{model.price}}</h3>-->
-            <!--</div>-->
+        <div class="col-sm-4 col-sm-offset-1">
+
+            <div class="book-cart" style="padding-bottom: 20px; border-bottom: 1px solid lightgrey">
+                <h4><i class="glyphicon glyphicon-shopping-cart"></i> Add into cart</h4>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="pull-right" style="font-size: 20px;"> ￥{{model.price}} x </span>
+                    </div>
+                    <div class="col-sm-8">
+                        <form class="form-inline">
+                          {{input type="number" class="form-control input-sm" max=100 min=0 id="inputAmount" placeholder="" value=amount}}
+                            <button {{action 'add2Cart'}} class="btn btn-primary btn-sm pull-right"
+                              {{bind-attr disabled=invalid}}>Add</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
 
             <!--Write Feedback-->
             <div class="book-new-feedback">
@@ -111,19 +124,19 @@
               {{#if ownFeedback}}
                 {{#each ownFeedback as |feedback|}}
                     <h4>Your Feedback</h4>
-                  <div class="row">
-                      <div class="col-sm-5">
-                          <p><strong>{{feedback.customer.username}} </strong>
-                            {{print-date date=feedback.time format="YYYY-MM-DD HH:MM:SS"}}</p>
-                      </div>
-                      <div class="col-sm-7">
-                          <!--<i class="glyphicon glyphicon-star"> </i>-->
-                          <!--<i class="glyphicon glyphicon-star-empty"></i>-->
-                        {{show-star-rating rating=feedback.score}}
-                          <span>{{feedback.score}} / 10</span>
-                      </div>
-                  </div>
-                  <p>{{feedback.comment}}</p>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <p><strong>{{feedback.customer.username}} </strong>
+                              {{print-date date=feedback.time format="YYYY-MM-DD HH:MM:SS"}}</p>
+                        </div>
+                        <div class="col-sm-7">
+                            <!--<i class="glyphicon glyphicon-star"> </i>-->
+                            <!--<i class="glyphicon glyphicon-star-empty"></i>-->
+                          {{show-star-rating rating=feedback.score}}
+                            <span>{{feedback.score}} / 10</span>
+                        </div>
+                    </div>
+                    <p>{{feedback.comment}}</p>
                 {{/each}}
               {{else}}
                   <h4>Write Your Feedback</h4>
