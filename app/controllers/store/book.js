@@ -21,8 +21,13 @@ export default Ember.Controller.extend({
         feedback.save();
       }
     },
+
     add2Cart: function() {
       var self = this;
+
+      if(this.get('customer') == null) {
+        this.transitionToRoute('store.login');
+      }
       this.store.find('cart', this.get('customer.id')
         + '-' + this.get('model.id')).then(function(oldItem) {
 
