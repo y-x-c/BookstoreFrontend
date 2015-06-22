@@ -1,3 +1,7 @@
+body {
+  height: 2000px;
+}
+
 .sidebar {
   position: fixed;
   padding: 20px;
@@ -102,4 +106,17 @@
 
 .book-info tr:first-child td {
   border-top: 0px solid grey;
+
+}
+
+.book-info td {
+  font-weight: 300;
+}
+
+.full-star {
+  color: darkorange;
+}
+
+.half-star {
+  color: rgba(255, 140, 0, 0.7);
 }

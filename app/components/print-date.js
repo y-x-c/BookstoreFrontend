@@ -4,7 +4,10 @@ export default Ember.Component.extend({
   tagName: '',
   fomatedDate: Ember.computed('date', {
     get: function() {
-      return moment(this.get('date')).format("YYYY");
+      if(this.get('format') == null)
+        return moment(this.get('date')).format("YYYY");
+      else
+        return moment(this.get('date')).format(this.get('format'));
     }
   })
 

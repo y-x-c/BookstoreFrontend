@@ -1,6 +1,9 @@
 <div class="container">
     <div class="page-header">
+        <!--<div class="col-sm-8">-->
         <h2>《{{model.title}}》<small>{{model.subtitle}}</small></h2>
+        <!--</div>-->
+        <!--<h4 class="pull-right"><i class="glyphicon glyphicon-shopping-cart"></i></h4>-->
     </div>
     <div class="col-sm-12 book-main">
         <div class="row">
@@ -30,7 +33,7 @@
                     </tr>
                     <tr>
                         <td>Price</td>
-                        <td>￥{{model.price}}</td>
+                        <td>￥{{!model.price}}</td>
                     </tr>
                     <tr>
                         <td>Publication Date</td>
@@ -52,15 +55,72 @@
                 </table>
             </div>
         </div>
+    </div>
 
-        <div class="panel panel-default">
-            <!--<div class="panel-heading">-->
-                <!--<h5 style="margin: 0 auto;">Summary</h5>-->
-            <!--</div>-->
-            <div class="panel-body">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="book-summary">
+                <h4>Summary</h4>
                 <p style="font-size: 13px; margin: 0">{{model.summary}}</p>
             </div>
+
+            <!--Feedback-->
+
+            <h4>Feedbacks</h4>
+
+
+          {{#each model.feedbacks as |feedback|}}
+              <div class="feedback" style="margin-bottom: 15px">
+                  <div class="row">
+                      <div class="col-sm-5">
+                          <p><strong>{{feedback.customer.username}} </strong>
+                            {{print-date date=feedback.time format="YYYY-MM-DD HH:MM:SS"}}</p>
+                      </div>
+                      <div class="col-sm-7">
+                          <!--<i class="glyphicon glyphicon-star"> </i>-->
+                          <!--<i class="glyphicon glyphicon-star-empty"></i>-->
+                          {{show-star-rating rating=feedback.score}}
+                          <span>{{feedback.score}} / 10</span>
+                      </div>
+                  </div>
+                  <p>{{feedback.comment}}</p>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="btn-group btn-group-xs" role="group" aria-label="usefulness">
+                              <button type="button" class="btn btn-default">Very useful</button>
+                              <button type="button" class="btn btn-default">Useful</button>
+                              <button type="button" class="btn btn-default">Useless</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          {{/each}}
         </div>
 
+
+        <div class="col-sm-4">
+            <!--Add into cart-->
+            <!--<div class="book-cart">-->
+            <!--<h3><i class="glyphicon glyphicon-shopping-cart"></i> ￥{{model.price}}</h3>-->
+            <!--</div>-->
+
+            <!--Write Feedback-->
+            <div class="book-new-feedback">
+                <h4>Write Your Feedback</h4>
+
+                <form class="form">
+                    <div class="form-group">
+                      {{textarea class="form-control" rows="3" value=summary}}
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 pull-right">
+                            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                            <button {{action 'submitFeedback'}} class="btn btn-primary pull-right btn-sm">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+
 </div>
