@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  //tagName: '',
+
   actions: {
     selectSuggestion: function(suggestion) {
       this.set('textValue', suggestion.get('title'));
@@ -36,7 +36,7 @@ export default Ember.Component.extend({
     this.set('shouldDisplay', false);
   },
 
-  keyUp: function(event) {
+  textValueChanged: Ember.observer('textValue', function(event) {
     //prevent send request during typing
     var self = this;
 
@@ -46,36 +46,38 @@ export default Ember.Component.extend({
     var func = function () {
       var currentTextValue = self.get('textValue');
       if(currentTextValue === oldTextValue && self.get('lastRequestValue') != oldTextValue) {
+        self.set('value', null);
         self.set('sendRequest', true);
         self.set('lastRequestValue', oldTextValue);
         self.set('shouldDisplay', true);
-        self.set('value', null);
       }
     };
 
     Ember.run.later(this, func, 200);
-  },
-
-  preventEnter: true,
+  }),
 
   keyDown: function(event) {
     var self = this;
     if(this.get('hasSuggestion')) {
-      this.set('shouldDisplay', true);
-
       if(event.keyCode == 38) { // up
         this.send('moveSuggestionUp');
       } else if (event.keyCode == 40) { //down
         this.send('moveSuggestionDown');
       } else if (event.keyCode == 13 || event.keyCode == 9) { //enter && tab
-        this.get('suggestions').then(function(suggestions) {
+        var suggestions = this.get('suggestions');
+
+        suggestions && this.get('shouldDisplay') && suggestions.then(function(suggestions) {
           self.send('selectSuggestion', suggestions.objectAt(self.get('current')));
         });
-        if(event.keyCode == 13 && this.get('preventEnter')) {
+
+        if(event.keyCode == 9) {
           event.preventDefault();
         }
-      } else if (event.keyCode == 27) { //esc
+      }
+      if (event.keyCode == 27) { //esc
         this.set('shouldDisplay', false);
+      } else {
+        this.set('shouldDisplay', true);
       }
     }
   },
@@ -98,7 +100,6 @@ export default Ember.Component.extend({
         this.set('current', 0);
         var term = this.get('term');
         var jsonstring = '{"' + term + '": "' + value + '","limit": 5' + '}';
-        //console.log(jsonstring);
         var results = this.get('store').find(this.get('modelName'), JSON.parse(jsonstring));
 
         this.set('suggestionsCached', results);
@@ -113,33 +114,27 @@ export default Ember.Component.extend({
     }
   }),
 
-  suggestionsLengthCached: null,
-  suggestionsLength: Ember.computed("suggestions", {
-    set: function (key, value) {
-      this.set('suggestionsLengthCached', value);
-      return value;
-    },
-    get: function() {
-      var suggestions = this.get('suggestions');
-      var self = this;
+  suggestionsLength: null,
+  suggetionsChanged: Ember.observer('suggestions', function() {
+    var suggestions = this.get('suggestions');
+    var self = this;
 
-      !!suggestions && suggestions.then(function(suggestions) {
-        self.set('suggestionsLength', suggestions.get('length'));
-      });
-      return this.get('suggestionsLengthCached');
+    suggestions && suggestions.then(function(suggestions) {
+      self.set('suggestionsLength', suggestions.get('length'));
+    });
+  }),
+
+  hasSuggestion: Ember.computed('suggestionsLength', {
+    get: function() {
+      return this.get('suggestionsLength') > 0;
     }
   }),
 
-  hasSuggestion: function() {
-    return this.get('suggestionsLength') > 0;
-  }.property('suggestionsLength'),
-
   shouldDisplay: false,
 
-  displaySuggestions: Ember.computed("shouldDisplay", "hasSuggestion", {
+  displaySuggestions: Ember.computed("shouldDisplay", "hasSuggestion", "textValue", {
     get: function() {
-      //console.log(this.get('shouldDisplay') + " " + this.get('suggestionsLength'));
-      return this.get('shouldDisplay') && this.get('hasSuggestion');
+      return this.get('shouldDisplay') && this.get('hasSuggestion') && this.get('textValue');
     }
   })
 

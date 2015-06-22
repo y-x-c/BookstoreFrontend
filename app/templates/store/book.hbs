@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <a href="#" class="thumbnail">
-                    <img src="http://img3.douban.com/lpic/s28012945.jpg" alt="...">
+                    <img src={{model.img}} alt="...">
                 </a>
             </div>
             <div class="col-sm-7 col-sm-offset-1 book-info">
@@ -79,7 +79,7 @@
                       <div class="col-sm-7">
                           <!--<i class="glyphicon glyphicon-star"> </i>-->
                           <!--<i class="glyphicon glyphicon-star-empty"></i>-->
-                          {{show-star-rating rating=feedback.score}}
+                        {{show-star-rating rating=feedback.score}}
                           <span>{{feedback.score}} / 10</span>
                       </div>
                   </div>
@@ -106,19 +106,42 @@
 
             <!--Write Feedback-->
             <div class="book-new-feedback">
-                <h4>Write Your Feedback</h4>
 
-                <form class="form">
-                    <div class="form-group">
-                      {{textarea class="form-control" rows="3" value=summary}}
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2 pull-right">
-                            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
-                            <button {{action 'submitFeedback'}} class="btn btn-primary pull-right btn-sm">Submit</button>
-                        </div>
-                    </div>
-                </form>
+
+              {{#if ownFeedback}}
+                {{#each ownFeedback as |feedback|}}
+                    <h4>Your Feedback</h4>
+                  <div class="row">
+                      <div class="col-sm-5">
+                          <p><strong>{{feedback.customer.username}} </strong>
+                            {{print-date date=feedback.time format="YYYY-MM-DD HH:MM:SS"}}</p>
+                      </div>
+                      <div class="col-sm-7">
+                          <!--<i class="glyphicon glyphicon-star"> </i>-->
+                          <!--<i class="glyphicon glyphicon-star-empty"></i>-->
+                        {{show-star-rating rating=feedback.score}}
+                          <span>{{feedback.score}} / 10</span>
+                      </div>
+                  </div>
+                  <p>{{feedback.comment}}</p>
+                {{/each}}
+              {{else}}
+                  <h4>Write Your Feedback</h4>
+                  <form class="form">
+                      <div class="form-group">
+                        {{textarea class="form-control" rows="3" value=comment}}
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-sm-3 input-group-sm">
+                            {{input type="number" class="form-control" max=10 min=0 id="inputRating" placeholder="" value=rating}}
+                          </div>
+                          <div class="col-sm-2 pull-right">
+                              <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                              <button {{action 'submitFeedback'}} class="btn btn-primary pull-right btn-sm">Submit</button>
+                          </div>
+                      </div>
+                  </form>
+              {{/if}}
             </div>
         </div>
     </div>

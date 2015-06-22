@@ -4,12 +4,10 @@
             <h1>Search</h1>
         </div>
         <div class="col-xs-8">
-            <form role="search" {{action 'search'}} style="margin-top:30px">
-                <div class="form-group">
-                  {{auto-complete-books-nav _class="form-control" _id="inputBook" _placeholder="Search a book"
-                  store=this.store modelName="book" term="all" textValue=keywords search="search"}}
-                </div>
-            </form>
+
+          {{auto-complete-books-nav _class="form-control" _id="inputBook" _placeholder="Search a book"
+          store=this.store modelName="book" term="all" textValue=keywords action="search"}}
+
         </div>
     </div>
     <div class="row">

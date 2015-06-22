@@ -6,6 +6,21 @@ export default Ember.Controller.extend({
   customer: Ember.computed.alias('controllers.application.customer'),
   actions: {
     logout: function() {
+      var self = this;
+      var host = this.store.adapterFor('application').get('host');
+      var namespace = this.store.adapterFor('application').get('namespace');
+      var url = [host, namespace, "customers", "logout"].join('/');
+
+      Ember.$.ajax({
+        type: "POST",
+        url: url,
+        data: {},
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        crossDomain: true,
+        xhrFields: {withCredentials: true}
+      });
+
       this.set('customer', null);
       this.store.init();
     },

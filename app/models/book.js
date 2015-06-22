@@ -10,6 +10,7 @@ export default DS.Model.extend({
   keyword: DS.attr('string'),
   subject: DS.attr('string'),
   summary: DS.attr('string'),
+  img: DS.attr('string'),
   publisher: DS.belongsTo('publisher', { async: true }),
   authors: DS.hasMany('author', { async: true }),
   feedbacks: DS.hasMany('feedback', { async: true })
