@@ -37,6 +37,7 @@ Router.map(function() {
     this.route('login');
     this.route('signup');
     this.route('search');
+    this.route('orders', function() {});
   });
 });
 
