@@ -8,7 +8,7 @@
     </div>
     <div class="col-sm-12 book-main">
         <div class="row">
-            <table class="table table-striped">
+            <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -16,6 +16,15 @@
                     <th>Address</th>
                 </tr>
                 </thead>
+                <tbody>
+                {{#each customer.orders as |order|}}
+                <tr>
+                    <th>{{#link-to 'store.order' order}}{{order.id}}{{/link-to}}</th>
+                    <th>{{order.time}}</th>
+                    <th>{{order.address}}</th>
+                </tr>
+                {{/each}}
+                </tbody>
             </table>
         </div>
     </div>
