@@ -40,6 +40,7 @@ Router.map(function() {
     this.route('orders', function() { });
     this.route('order', { path: '/order/:id' });
     this.route('cart');
+    this.route('advancedSearch');
   });
 });
 

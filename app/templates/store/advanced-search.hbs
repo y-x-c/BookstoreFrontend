@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="page-header">
+        <!--<div class="col-xs-3">-->
+        <h1>Advanced Search</h1>
+        <!--</div>-->
+    </div>
+    <div class="row">
+        <div class="col-sm-3 search-sidebar">
+
+
+            <h4>Sort by</h4>
+            <div class="list-group col-xs-12">
+                <a href="#" {{action 'sortByYr'}} {{bind-attr class=":list-group-item sortByYr:active"}}>
+                    <p class="list-group-item-text">Year</p>
+                </a>
+                <a href="#" {{action 'sortByFb'}} {{bind-attr class=":list-group-item sortByFb:active"}}>
+                    <p class="list-group-item-text">Feedback</p>
+                </a>
+                <a href="#" {{action 'sortByTFb'}} {{bind-attr class=":list-group-item sortByTFb:active"}}>
+                    <p class="list-group-item-text">Trusted Feedback</p>
+                </a>
+            </div>
+            <div class="list-group col-xs-12">
+                <a href="#" {{action 'descent'}} {{bind-attr class=":list-group-item descent:active"}}>
+                    <p class="list-group-item-text">Descent</p>
+                </a>
+                <a href="#" {{action 'ascent'}} {{bind-attr class=":list-group-item ascent:active"}}>
+                    <p class="list-group-item-text">Ascent</p>
+                </a>
+            </div>
+            <p>{{#link-to 'store.advancedSearch'}}Advanced search{{/link-to}}</p>
+        </div>
+
+        <div class="col-sm-8 search-main">
+            
+          {{#if result}}
+
+
+              <div class="result-head" style="margin-bottom:15px; border-bottom: 1px solid lightgrey;">
+                  <h4>We've found 791,141 results</h4>
+              </div>
+            {{#each result as |book|}}
+                <div class="book-list row" style="margin-bottom:15px; border-bottom: 1px solid lightgrey;">
+                    <div class="col-xs-9">
+                        <h3>{{#link-to 'store.book' book}}《{{book.title}}》{{/link-to}} <small>{{book.subtitle}}</small></h3>
+                        <h5>
+                          {{print-date date=book.pubdate}} By
+                          {{#each book.authors as |author|}}{{#link-to 'store'}}{{author.name}}{{/link-to}} {{/each}}
+                        </h5>
+                    </div>
+                    <div class="col-xs-2 pull-right book-list-cart" style="margin-top: 20px">
+                        <h4><i class="glyphicon glyphicon-shopping-cart"></i> ￥{{book.price}}</h4>
+                    </div>
+                    <div class="col-xs-12">
+                        <p class="text-muted" style="max-height: 80px; overflow: hidden; text-overflow: ellipsis ">
+                          {{book.summary}}
+                        </p>
+                    </div>
+                </div>
+            {{/each}}
+
+          {{else}}
+              <h4>Conditions</h4>
+            {{#each conditions as |condition index|}}
+                <div class="row">
+                    <div class="col-xs-9">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default">{{condition.term}}</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#" {{action 'term' condition 'Title'}}>Title</a></li>
+                                    <li><a href="#" {{action 'term' condition 'Author'}}>Author</a></li>
+                                    <li><a href="#" {{action 'term' condition 'Publisher'}}>Publisher</a></li>
+                                    <li><a href="#" {{action 'term' condition 'Subject'}}>Subject</a></li>
+                                    <!--<li><a href="#">Keyword</a></li>-->
+                                </ul>
+                            </div>
+                            {{input type="text" class="form-control" value=condition.cond aria-label="Text input with segmented button dropdown"}}
+                        </div><!-- /.input-group -->
+                    </div>
+
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" {{action 'or' index}} {{bind-attr class=":btn :btn-default condition.OR:active condition.disabled:disabled"}}>OR</button>
+                        <button type="button" {{action 'and' index}} {{bind-attr class=":btn :btn-default condition.AND:active condition.disabled:disabled"}}>AND</button>
+                        <button type="button" {{action 'insert' index}} class="btn btn-default btn-success">+</button>
+                        <button type="button" {{action 'remove' index}} class="btn btn-default btn-danger">-</button>
+                    </div>
+                </div>
+            {{/each}}
+          {{/if}}
+        </div>
+
+
+    </div>
+</div>
