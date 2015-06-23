@@ -53,12 +53,12 @@ export default Ember.Controller.extend({
       if(!customer) return null;
 
       var self = this;
+      var modelBook = self.get('model.id'), customer = self.get('customer.id');
       return this.store.filter('feedback', function(feedback) {
         //console.log(feedback.get('id'), feedback.get('book.id'), self.get('model.id'));
         var feedbackBook = feedback.get('book.id'),
-          modelBook = self.get('model.id'),
-          feedbackCustomer = feedback.get('customer.id'),
-          customer = self.get('customer.id');
+          feedbackCustomer = feedback.get('customer.id');
+
         return feedbackBook === modelBook && feedbackCustomer === customer;
       });
     }

@@ -9,6 +9,7 @@ export default Ember.Component.extend({
       this.set('sendRequest', false);
       this.set('value', suggestion);
       this.set('suggestions', null);
+      this.set('lastRequestValue', suggestion.get(this.get('term')));
     },
 
     moveSuggestionDown: function() {

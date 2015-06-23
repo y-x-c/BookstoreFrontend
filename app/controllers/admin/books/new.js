@@ -12,7 +12,8 @@ export default Ember.Controller.extend({
         price: this.get('price'),
         pubdate: new Date(this.get('pubdate')),
         format: this.get('format'),
-        summary: this.get('summary')
+        summary: this.get('summary'),
+        img: this.get('img')
       });
       book.get("authors").addObjects(this.get('authors'));
 

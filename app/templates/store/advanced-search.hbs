@@ -32,7 +32,7 @@
         </div>
 
         <div class="col-sm-8 search-main">
-            
+
           {{#if result}}
 
 
@@ -63,7 +63,7 @@
               <h4>Conditions</h4>
             {{#each conditions as |condition index|}}
                 <div class="row">
-                    <div class="col-xs-9">
+                    <div class="col-sm-9">
                         <div class="input-group">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-default">{{condition.term}}</button>
@@ -79,15 +79,17 @@
                                     <!--<li><a href="#">Keyword</a></li>-->
                                 </ul>
                             </div>
-                            {{input type="text" class="form-control" value=condition.cond aria-label="Text input with segmented button dropdown"}}
+                          {{input type="text" class="form-control" value=condition.cond aria-label="Text input with segmented button dropdown"}}
                         </div><!-- /.input-group -->
                     </div>
 
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" {{action 'or' index}} {{bind-attr class=":btn :btn-default condition.OR:active condition.disabled:disabled"}}>OR</button>
-                        <button type="button" {{action 'and' index}} {{bind-attr class=":btn :btn-default condition.AND:active condition.disabled:disabled"}}>AND</button>
-                        <button type="button" {{action 'insert' index}} class="btn btn-default btn-success">+</button>
-                        <button type="button" {{action 'remove' index}} class="btn btn-default btn-danger">-</button>
+                    <div class="col-sm-3">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" {{action 'or' index}} {{bind-attr class=":btn :btn-default condition.OR:active condition.disabled:disabled"}}>OR</button>
+                            <button type="button" {{action 'and' index}} {{bind-attr class=":btn :btn-default condition.AND:active condition.disabled:disabled"}}>AND</button>
+                            <button type="button" {{action 'insert' index}} class="btn btn-default btn-success">+</button>
+                            <button type="button" {{action 'remove' index}} class="btn btn-default btn-danger">-</button>
+                        </div>
                     </div>
                 </div>
             {{/each}}
