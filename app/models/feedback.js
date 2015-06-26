@@ -6,5 +6,6 @@ export default DS.Model.extend({
   score: DS.attr('number'),
   time: DS.attr('date'),
   comment: DS.attr('string'),
-  usefulness: DS.attr('number')
+  usefulness: DS.attr('number'),
+  opinion: DS.attr('number')
 });

@@ -1,0 +1,32 @@
+{{#if display}}
+    <div class="feedback" style="margin-bottom: 15px">
+        <div class="row">
+            <div class="col-sm-5">
+                <p><strong>{{feedback.customer.username}} </strong>
+                  {{print-date date=feedback.time format="YYYY-MM-DD HH:MM:SS"}}</p>
+            </div>
+            <div class="col-sm-7">
+                <!--<i class="glyphicon glyphicon-star"> </i>-->
+                <!--<i class="glyphicon glyphicon-star-empty"></i>-->
+              {{show-star-rating rating=feedback.score}}
+                <span>{{feedback.score}} / 10</span>
+            </div>
+        </div>
+        <p>{{feedback.comment}}</p>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="btn-group btn-group-xs" role="group" aria-label="usefulness">
+                  {{#if feedback.opinion}}
+                      <button type="button" {{bind-attr class=":btn veryUseful:btn-primary:btn-default veryUseful::disabled"}}>Very useful</button>
+                      <button type="button" {{bind-attr class=":btn useful:btn-primary:btn-default useful::disabled"}}>Useful</button>
+                      <button type="button" {{bind-attr class=":btn useless:btn-primary:btn-default useless::disabled"}}>Useless</button>
+                  {{else}}
+                      <button type="button" class="btn btn-default" {{action 'assess' 2}}>Very useful</button>
+                      <button type="button" class="btn btn-default" {{action 'assess' 1}}>Useful</button>
+                      <button type="button" class="btn btn-default" {{action 'assess' -1}}>Useless</button>
+                  {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+{{/if}}
