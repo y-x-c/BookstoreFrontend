@@ -33,7 +33,7 @@ Router.map(function() {
   });
 
   this.route('store', { path: '/' } , function() {
-    this.route('book', { path: '/books/:id' });
+    this.route('book', { path: '/book/:id' });
     this.route('login');
     this.route('signup');
     this.route('search');
@@ -43,6 +43,7 @@ Router.map(function() {
       this.route('confirm');
     });
     this.route('advancedSearch');
+    this.route('customer', {path: '/customer/:id'});
   });
 });
 

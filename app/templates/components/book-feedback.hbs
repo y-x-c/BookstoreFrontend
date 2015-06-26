@@ -2,7 +2,7 @@
     <div class="feedback" style="margin-bottom: 15px">
         <div class="row">
             <div class="col-sm-5">
-                <p><strong>{{feedback.customer.username}} </strong>
+                <p><strong>{{#link-to 'store.customer' feedback.customer}}{{feedback.customer.username}}{{/link-to}} </strong>
                   {{print-date date=feedback.time format="YYYY-MM-DD HH:MM:SS"}}</p>
             </div>
             <div class="col-sm-7">

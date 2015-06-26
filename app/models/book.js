@@ -13,5 +13,6 @@ export default DS.Model.extend({
   img: DS.attr('string'),
   publisher: DS.belongsTo('publisher', { async: true }),
   authors: DS.hasMany('author', { async: true }),
-  feedbacks: DS.hasMany('feedback', { async: true })
+  feedbacks: DS.hasMany('feedback', { async: true }),
+  suggestions: DS.hasMany('book', { async: true}),
 });
