@@ -39,7 +39,9 @@ Router.map(function() {
     this.route('search');
     this.route('orders', function() { });
     this.route('order', { path: '/order/:id' });
-    this.route('cart');
+    this.route('cart', function() {
+      this.route('confirm');
+    });
     this.route('advancedSearch');
   });
 });
