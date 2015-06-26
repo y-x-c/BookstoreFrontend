@@ -137,7 +137,9 @@
             <!--Suggestions-->
             {{!#if customer}}
               <h4>Suggestions</h4>
-
+          {{#each model.suggestions as |suggestion|}}
+            {{book-suggestion book=suggestion}}
+          {{/each}}
 
             {{!/if}}
         </div>
