@@ -1,22 +1,31 @@
-<div class="alert alert-success" role="alert">
+{{#if hasAdded}}
+<div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <strong>Successfully!</strong>
 </div>
+{{/if}}
+
+{{#if hasError}}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong>
+    </div>
+{{/if}}
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Add a new book</h3>
     </div>
     <div class="panel-body">
         <form class="form-horizontal">
-            <div class="form-group has-success has-feedback">
+            <div {{bind-attr class=":form-group ISBNError:has-feedback ISBNError:has-error" }}>
                 <label for="inputISBN" class="col-sm-3 control-label">ISBN</label>
                 <div class="col-sm-8">
                     <!--<input type="text" class="form-control" id="inputISBN" placeholder="ISBN">-->
                   {{input type="text" class="form-control" id="inputISBN" placeholder="ISBN" value=ISBN}}
-                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                    <span id="inputISBNStatus" class="sr-only">(success)</span>
                 </div>
             </div>
-            <div class="form-group">
+            <div {{bind-attr class=":form-group titleError:has-feedback titleError:has-error" }}>
                 <label for="inputTitle" class="col-sm-3 control-label">Title</label>
                 <div class="col-sm-8">
                     <!--<input type="text" class="form-control" id="inputTitle" placeholder="Title">-->
@@ -30,7 +39,7 @@
                   {{input type="text" class="form-control" id="inputSubtitle" placeholder="Subtitle" value=subtitle}}
                 </div>
             </div>
-            <div class="form-group">
+            <div {{bind-attr class=":form-group publisherError:has-feedback publisherError:has-error" }}>
                 <label for="inputPublisher" class="col-sm-3 control-label">Publisher</label>
                 <div class="col-sm-8">
                     <!--<input type="text" class="form-control" id="inputPublisher" placeholder="Publisher">-->
@@ -38,23 +47,22 @@
                   store=this.store modelName="publisher" term="name" value=publisher}}
                 </div>
             </div>
-            <div class="form-group">
-                <label for="inputAuthor" class="col-sm-3 control-label">Author</label>
+            <div {{bind-attr class=":form-group authorsError:has-feedback authorsError:has-error" }}>
+                <label for="inputAuthor" class="col-sm-3 control-label">Author(s)</label>
                 <div class="col-sm-8">
                     <!--<input type="text" class="form-control" id="inputPublisher" placeholder="Publisher">-->
                   {{multi-select _class="form-control" _id="inputAuthor" _placeholder="Author"
                   store=this.store modelName="author" term="name" values=authors}}
                 </div>
             </div>
-            <div class="form-group">
-
+            <div {{bind-attr class=":form-group amountError:has-feedback amountError:has-error" }}>
                 <label for="inputAmount" class="col-sm-3 control-label">Amount</label>
                 <div class="col-sm-8">
                     <!--<input type="number" class="form-control" id="inputAmount" placeholder="Amount">-->
                   {{input type="number" class="form-control" id="inputAmount" placeholder="Amount" value=amount}}
                 </div>
             </div>
-            <div class="form-group has-feedback has-error">
+            <div {{bind-attr class=":form-group priceError:has-feedback priceError:has-error" }}>
                 <label for="inputPrice" class="col-sm-3 control-label">Price</label>
                 <div class="col-sm-8">
                     <div class="input-group">
@@ -62,11 +70,9 @@
                         <!--<input type="number" class="form-control" id="inputPrice" placeholder="Price" step="0.01">-->
                       {{input type="number" class="form-control" id="inputPrice" placeholder="Price" step="0.01" value=price}}
                     </div>
-                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                    <span id="inputPriceStatus" class="sr-only">(failed)</span>
                 </div>
             </div>
-            <div class="form-group">
+            <div {{bind-attr class=":form-group pubdateError:has-feedback pubdateError:has-error" }}>
                 <label for="inputPubdate" class="col-sm-3 control-label">Publication Date</label>
                 <div class="col-sm-8">
                     <!--<input type="date" class="form-control input" id="inputPubdate" placeholder="Publication Date">-->

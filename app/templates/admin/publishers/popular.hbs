@@ -7,8 +7,11 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-sm-6">
       {{my-daterange-picker startDate=start endDate=end class="pull-left"}}
+    </div>
+    <div class="col-sm-6">
+      {{pagination-limit limit=limit class="pull-right"}}
     </div>
 </div>
 
@@ -25,7 +28,7 @@
             <tbody>
             {{#each publishers as |publisher|}}
                 <tr>
-                    <td>{{publisher.id}}</td>
+                    <th>{{publisher.id}}</th>
                     <td>{{publisher.name}}</td>
                     <td>{{publisher.sales}}</td>
                 </tr>
@@ -35,3 +38,4 @@
     </div>
 </div>
 
+{{pagination-nav max=pagecount offset=offset limit=limit search='updatePopularAuthors'}}

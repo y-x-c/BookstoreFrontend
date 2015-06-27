@@ -1,16 +1,28 @@
+{{#if hasAdded}}
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Successfully!</strong>
+    </div>
+{{/if}}
+
+{{#if hasError}}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong>
+    </div>
+{{/if}}
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Add a new author</h3>
     </div>
     <div class="panel-body">
         <form class="form-horizontal">
-            <div class="form-group has-success has-feedback">
-                <label for="inputISBN" class="col-sm-3 control-label">Name</label>
+            <div {{bind-attr class=":form-group nameError:has-feedback nameError:has-error" }}>
+                <label for="inputName" class="col-sm-3 control-label">Name</label>
                 <div class="col-sm-8">
                     <!--<input type="text" class="form-control" id="inputISBN" placeholder="ISBN">-->
                   {{input type="text" class="form-control" id="inputName" placeholder="Name" value=name}}
-                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                    <span id="inputISBNStatus" class="sr-only">(success)</span>
                 </div>
             </div>
 

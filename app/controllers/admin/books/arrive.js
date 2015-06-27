@@ -4,7 +4,21 @@ export default Ember.Controller.extend({
   actions: {
     submit: function() {
       var book = this.get('book');
-      book.save();
+      var self = this;
+      book.save().then(
+        function() {
+          self.set('hasUpdated', true);
+          self.set('hasError', false);
+        },
+        function() {
+          self.set('hasError', true);
+          self.set('hasUpdated', false);
+        }
+      );
+    },
+
+    return: function() {
+      this.set('book', null);
     }
   },
 

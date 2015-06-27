@@ -11,6 +11,7 @@ export default Ember.Controller.extend({
 
       var self = this;
       Ember.$.getJSON(url).then(function(_result) {
+        if(_result.result.degree == 3) _result.result.degree = 'Too far to estimate';
         self.set('result', _result.result);
       });
     }

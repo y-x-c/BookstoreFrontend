@@ -1,3 +1,17 @@
+{{#if hasUpdated}}
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Successfully!</strong>
+    </div>
+{{/if}}
+
+{{#if hasError}}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Error!</strong>
+    </div>
+{{/if}}
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">New books arrive</h3>
@@ -16,6 +30,7 @@
           {{/if}}
 
           {{#if book}}
+
               <div class="form-group">
                   <label class="col-sm-3 control-label">ISBN</label>
                   <div class="col-sm-8">
@@ -68,7 +83,7 @@
                   <label class="col-sm-3 control-label">Publication Date</label>
                   <div class="col-sm-8">
                     {{!input type="date" class="form-control input" id="inputPubdate" placeholder="Publication Date" value=pubdate}}
-                      <p class="form-control-static">{{book.pubdate}}</p>
+                      <p class="form-control-static">{{print-date date=book.pubdate format="YYYY-MM-DD"}}</p>
                   </div>
               </div>
             {{#if book.format}}
@@ -107,6 +122,7 @@
                   <div class="col-sm-offset-3 col-sm-8">
                       <!--<button type="submit" class="btn btn-primary">Submit</button>-->
                       <button {{action 'submit'}} class="btn btn-primary">Update</button>
+                      <button class="btn btn-default" {{action 'return'}}>Return</button>
                   </div>
               </div>
           {{/if}}

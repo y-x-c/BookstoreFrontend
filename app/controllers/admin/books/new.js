@@ -3,6 +3,24 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   actions: {
     submit: function () {
+      var notNullAttrs = ['ISBN', 'title', 'subtitle', 'publisher', 'amount', 'price', 'pubdate'];
+      var ret = false;
+      var self = this;
+
+      notNullAttrs.forEach(function(attr) {
+        if(!self.get(attr)) {
+          self.set(attr + "Error", true);
+          ret = true;
+        }
+      });
+
+      if(self.get('authors.length') == 0) {
+        self.set('authorsError', true);
+        ret = true;
+      }
+
+      if(ret) return;
+
       var book = this.store.createRecord('book', {
         id: this.get('ISBN'),
         title: this.get('title'),
@@ -18,16 +36,38 @@ export default Ember.Controller.extend({
       book.get("authors").addObjects(this.get('authors'));
 
       // todo give user feedback
-      book.save(function(response) {
+      book.save().then(
+        function(response) {
+          self.reset();
+          self.set('hasAdded', true);
+          self.set('hasError', false);
 
-      },
-      function(book) {
-        book.destroyRecord();
-      });
+          notNullAttrs.forEach(function(attr) {
+            self.set(attr + "Error", false);
+          });
+
+          self.set('authorsError', false);
+        },
+        function(book) {
+          //self.store.deleteRecord(book);
+          self.set('hasAdded', false);
+          self.set('hasError', true);
+        }
+      );
 
     }
   },
 
-  authors: []
+  authors: [],
+
+  reset: function() {
+    var attrs = ['ISBN', 'title', 'subtitle', 'publisher', 'amount', 'price', 'pubdate', 'format', 'summary', 'img'];
+    var self = this;
+    attrs.forEach(function(attr) {
+      self.set(attr, null);
+    });
+
+    this.set(authors, []);
+  }
 
 });

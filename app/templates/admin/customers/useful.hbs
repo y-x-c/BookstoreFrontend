@@ -1,8 +1,14 @@
 <div class="row">
     <div class="col-xs-12">
         <h1 class="page-header">
-            Most trusted customers
+            Most useful customers
         </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+      {{pagination-limit limit=limit class="pull-right"}}
     </div>
 </div>
 
@@ -35,3 +41,4 @@
     </div>
 </div>
 
+{{pagination-nav max=pagecount offset=offset limit=limit search='updateCustomers'}}

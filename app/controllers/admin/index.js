@@ -28,10 +28,10 @@ export default Ember.Controller.extend({
     var self = this;
     var host = this.store.adapterFor('application').get('host');
     var namespace = this.store.adapterFor('application').get('namespace');
-    var start = moment(this.get('start'));
-    var _start = start.format("YYYY-MM-DD");
-    var end = moment(this.get('end'));
-    var _end = end.format("YYYY-MM-DD");
+    var start = moment(this.get('start')).startOf('day');
+    var _start = start.format("YYYY-MM-DD HH:mm:ss");
+    var end = moment(this.get('end')).endOf('day');
+    var _end = end.format("YYYY-MM-DD HH:mm:ss");
     var url = [host, namespace, "orders/orders"].join('/');
     url += "?start=" + _start + "&end=" + _end;
 
