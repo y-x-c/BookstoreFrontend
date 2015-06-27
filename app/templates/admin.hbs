@@ -13,45 +13,65 @@
                 <li>
                   {{#link-to 'admin.index'}}Overview{{/link-to}}
                 </li>
+            </ul>
+            <ul class="nav nav-sidebar">
 
                 <li>
-                  {{#link-to 'admin.books.new'}}Add a new book{{/link-to}}
+                    <a href="javascript:;" data-toggle="collapse" data-target="#book" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-arrows-v"></i> Book <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="book" class="collapse nav-sidebar-collapse" aria-expanded="false" style="height: 0px;">
+                        <li>
+                          {{#link-to 'admin.books.new'}}Add a new book{{/link-to}}
+                        </li>
+
+                        <li>
+                          {{#link-to 'admin.books.arrive'}}New books arrive{{/link-to}}
+                        </li>
+                        <li>
+                          {{#link-to 'admin.books.popular'}}Show most popular books{{/link-to}}
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#author" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-arrows-v"></i> Author <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="author" class="collapse nav-sidebar-collapse" aria-expanded="false" style="height: 0px;">
+                        <li>
+                          {{#link-to 'admin.authors.new'}}Add a new author{{/link-to}}
+                        </li>
+                        <li>
+                          {{#link-to 'admin.authors.degree'}}Separation degree of two authors{{/link-to}}
+                        </li>
+                        <li>
+                          {{#link-to 'admin.authors.popular'}}Show most popular authors{{/link-to}}
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#publisher" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-arrows-v"></i> Publisher <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="publisher" class="collapse nav-sidebar-collapse" aria-expanded="false" style="height: 0px;">
+                        <li>
+                          {{#link-to 'admin.publishers.new'}}Add a new publisher{{/link-to}}
+                        </li>
+                        <li>
+                          {{#link-to 'admin.publishers.popular'}}Show most popular publishers{{/link-to}}
+                        </li>
+                    </ul>
                 </li>
 
                 <li>
-                  {{#link-to 'admin.books.arrive'}}New books arrive{{/link-to}}
-                </li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#customer" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-arrows-v"></i> Customer <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="customer" class="collapse nav-sidebar-collapse" aria-expanded="false" style="height: 0px;">
+                        <li>
+                          {{#link-to 'admin.customers.useful'}}Show most useful customers{{/link-to}}
+                        </li>
 
-                <li>
-                  {{#link-to 'admin.authors.new'}}Add a new author{{/link-to}}
-                </li>
-
-                <li>
-                  {{#link-to 'admin.publishers.new'}}Add a new publisher{{/link-to}}
-                </li>
-
-                <li>
-                  {{#link-to 'admin.authors.degree'}}Separation degree of two authors{{/link-to}}
-                </li>
-
-                <li>
-                  {{#link-to 'admin.books.popular'}}Show most popular books{{/link-to}}
-                </li>
-
-                <li>
-                  {{#link-to 'admin.authors.popular'}}Show most popular authors{{/link-to}}
-                </li>
-
-                <li>
-                  {{#link-to 'admin.publishers.popular'}}Show most popular publishers{{/link-to}}
-                </li>
-
-                <li>
-                  {{#link-to 'admin.customers.useful'}}Show most useful customers{{/link-to}}
-                </li>
-
-                <li>
-                  {{#link-to 'admin.customers.trusted'}}Show most trusted customers{{/link-to}}
+                        <li>
+                          {{#link-to 'admin.customers.trusted'}}Show most trusted customers{{/link-to}}
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>

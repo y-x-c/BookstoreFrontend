@@ -124,3 +124,26 @@ body {
 .search-condition {
   margin-bottom: 15px;
 }
+
+.nav-sidebar-collapse > li > a {
+  display: block;
+  padding: 10px;
+  padding-left: 20px;
+  text-decoration: none;
+}
+
+.nav-sidebar-collapse > li > a:hover {
+  text-decoration: none;
+  background-color: #eee;
+}
+
+.nav-sidebar-collapse > li {
+  position: relative;
+  display: block;
+  margin-left: -20px;
+}
+
+.nav-sidebar .active {
+  color: #fff;
+  background-color: #428bca;
+}
