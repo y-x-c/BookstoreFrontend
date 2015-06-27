@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
       feedback.reload();
     });
 
-    this.store.find('cart', {customer: this.get('customer.id')});
+    this.store.find('cart');
   }),
 
   askWhoAmI: function() {
@@ -26,5 +26,9 @@ export default Ember.Controller.extend({
     }, function() {
 
     });
-  }
+  },
+
+  urlChanged: Ember.observer('currentPath', function() {
+
+  })
 });

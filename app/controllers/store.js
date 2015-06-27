@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   needs: ['application'],
-  //customerId: Ember.computed.alias('controllers.application.customerId'),
+  currentPath: Ember.computed.alias('controllers.application.currentPath'),
   customer: Ember.computed.alias('controllers.application.customer'),
   actions: {
     logout: function() {
@@ -27,5 +27,13 @@ export default Ember.Controller.extend({
     search: function() {
       this.transitionToRoute('store.search', {queryParams:{all: this.get('keywords')}});
     }
-  }
+  },
+
+  displaySearchbar: Ember.computed('currentPath', {
+    get: function() {
+      var routes = ['store.search', 'store.advancedSearch', 'store.login', 'store.signup'];
+
+      return routes.indexOf(this.get('currentPath')) < 0;
+    }
+  })
 });

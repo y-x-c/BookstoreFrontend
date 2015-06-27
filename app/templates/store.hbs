@@ -11,12 +11,16 @@
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
-            <!--<form class="navbar-form navbar-left" role="search" {{action 'search'}}>-->
-                <!--<div class="form-group">-->
-                  <!--{{!auto-complete-books-nav _class="form-control" _id="inputBook" _placeholder="Search a book"-->
-                  <!--store=this.store modelName="book" term="all" textValue=keywords search="search"}}-->
-                <!--</div>-->
-            <!--</form>-->
+          {{#if displaySearchbar}}
+
+                  <form class="navbar-form navbar-left" role="search">
+                      <div class="form-group">
+                        {{auto-complete-books-nav _class="form-control" _id="inputBook" _placeholder="Search a book"
+                        store=this.store modelName="book" term="all" textValue=keywords search="search"}}
+                      </div>
+                  </form>
+
+          {{/if}}
 
             <ul class="nav navbar-nav">
               {{#if customer}}
@@ -28,6 +32,9 @@
 
             <ul class="nav navbar-nav navbar-right">
               {{#if customer}}
+                {{#if customer.admin}}
+                    <li>{{#link-to 'admin'}}Manage{{/link-to}}</li>
+                {{/if}}
                   <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hi, {{customer.name}} <span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
@@ -37,8 +44,10 @@
                       </ul>
                   </li>
               {{else}}
+
                   <li>{{#link-to 'store.login'}}Log in{{/link-to}}</li>
                   <li>{{#link-to 'store.signup'}}Sign up{{/link-to}}</li>
+
               {{/if}}
             </ul>
         </div>

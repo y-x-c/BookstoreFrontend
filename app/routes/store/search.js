@@ -9,11 +9,10 @@ export default Ember.Route.extend({
   //  }
   //},
   //
-  //setupController: function(controller, model, orthers) {
-  //  var queryParams = orthers.queryParams;
-  //  if(queryParams.all) {
-  //    controller.set('keywords', queryParams.all);
-  //
-  //  }
-  //}
+  setupController: function(controller, model, orthers) {
+    var queryParams = orthers.queryParams;
+    if(queryParams.all) {
+      controller.set('keywords', queryParams.all);
+    }
+  }
 });

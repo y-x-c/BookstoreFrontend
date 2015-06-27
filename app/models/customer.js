@@ -6,5 +6,6 @@ export default DS.Model.extend({
   email: DS.attr("string"),
   phone: DS.attr("string"),
   orders: DS.hasMany("order", { async: true }),
-  trusted: DS.attr("boolean")
+  trusted: DS.attr("boolean"),
+  admin: DS.attr("boolean")
 });
