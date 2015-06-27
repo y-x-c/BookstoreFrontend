@@ -9,5 +9,7 @@ export default Ember.Controller.extend({
     feedbacks.forEach(function(feedback) {
       feedback.reload();
     });
+
+    this.store.find('cart', {customer: this.get('customer.id')});
   }),
 });

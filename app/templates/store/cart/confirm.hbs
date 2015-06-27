@@ -3,25 +3,38 @@
         <h2>Confirm Your Order</h2>
     </div>
 
+  {{#if hasError}}
+      <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Error!</strong> No enough books maybe
+      </div>
+  {{/if}}
+
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-8 col-sm-offset-2">
             <form class="form-horizontal">
+
                 <div class="form-group">
+                    <label class="col-sm-2 control-label">Total Price</label>
+                    <div class="col-sm-10 input-group">
+                        <span class="input-group-addon">￥</span>
+                        <input class="form-control" type="text" placeholder={{totalPrice}} readonly>
+                    </div>
+                </div>
+                <div {{bind-attr class=":form-group addressError:has-feedback addressError:has-error"}}>
                     <label for="inputAddress" class="col-sm-2 control-label">Address</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-10 input-group">
+                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>-->
                       {{input type="text" class="form-control" id="inputAddress" placeholder="Address" value=addr}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-8">
+                    <div class="col-sm-offset-2 col-sm-8 input-group">
                         <button {{action 'confirm'}} class="btn btn-primary">Confirm</button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <div class="col-sm-4">
-            <p><strong>Total Price: </strong>{{totalPrice}}</p>
-        </div>
     </div>
 </div>

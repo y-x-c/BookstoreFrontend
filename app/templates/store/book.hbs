@@ -5,79 +5,69 @@
         <!--</div>-->
         <!--<h4 class="pull-right"><i class="glyphicon glyphicon-shopping-cart"></i></h4>-->
     </div>
-    <div class="col-sm-12 book-main">
-        <div class="row">
-            <div class="col-sm-4">
+
+        <div class="row book-main">
+            <div class="col-sm-4 col-sm-offset-2 col-md-3 col-lg-3">
                 <a href="#" class="thumbnail">
-                    <img src={{model.img}} alt="...">
+                    <img src={{model.img}} alt={{model.title}}>
                 </a>
             </div>
-            <div class="col-sm-7 col-sm-offset-1 book-info">
-                <table class="table">
-                    <tbody>
-                    <tr>
-                        <td>ISBN</td>
-                        <td>{{model.id}}</td>
-                    </tr>
-                    <tr>
-                        <td>Publisher</td>
-                        <td>{{model.publisher.name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Author</td>
-                        <td>{{#each model.authors as |author|}}{{#link-to 'store'}}{{author.name}}{{/link-to}} {{/each}}</td>
-                    </tr>
-                    <tr>
-                        <td>Amount</td>
-                        <td>{{model.amount}}</td>
-                    </tr>
-                    <tr>
-                        <td>Price</td>
-                        <td>￥{{model.price}}</td>
-                    </tr>
-                    <tr>
-                        <td>Publication Date</td>
-                        <td>{{print-date date=model.date}}</td>
-                    </tr>
-                    <tr>
-                        <td>Format</td>
-                        <td>{{model.format}}</td>
-                    </tr>
-                    <tr>
-                        <td>Subject</td>
-                        <td>{{model.subject}}</td>
-                    </tr>
-                    <tr>
-                        <td>Keyword</td>
-                        <td>{{model.Keyword}}</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="col-sm-6 col-sm-offset-1 book-info">
+
+                <p><strong>ISBN: </strong>{{model.id}}</p>
+
+
+                <p><strong>Publisher: </strong>{{model.publisher.name}}</p>
+
+                <p><strong>Author: </strong>{{#each model.authors as |author|}}{{#link-to 'store'}}{{author.name}}{{/link-to}} {{/each}}</p>
+
+                <p><strong>Amount: </strong>{{model.amount}}</p>
+
+                <p><strong>Price: </strong>￥{{model.price}}</p>
+
+                <p><strong>Publication Date: </strong>{{print-date format="YYYY-MM-DD" date=model.date}}</p>
+
+                <p><strong>Format: </strong>{{model.format}}</p>
+
+                <p><strong>Subject: </strong>{{model.subject}}</p>
+
+                <p><strong>Keyword: </strong>{{model.Keyword}}</p>
+
+
             </div>
         </div>
+
+
+    <div class="row">
+        <h3>Suggestions</h3>
+        <div class="col-sm-1"></div>
+      {{#each model.suggestions as |suggestion|}}
+          <div class="col-sm-2">
+            {{book-suggestion book=suggestion}}
+          </div>
+      {{/each}}
     </div>
 
     <div class="row">
         <div class="col-sm-7">
             <div class="book-summary">
-                <h4>Summary</h4>
+                <h3>Summary</h3>
                 <p style="font-size: 13px; margin: 0">{{model.summary}}</p>
             </div>
 
             <!--Feedback-->
 
-            <h4>Feedbacks</h4>
+            <h3>Feedbacks</h3>
 
 
           {{#each model.feedbacks as |feedback|}}
             {{book-feedback feedback=feedback customer=customer}}
           {{/each}}
+
         </div>
 
-
-        <div class="col-sm-4 col-sm-offset-1">
-
-            <div class="book-cart" style="padding-bottom: 20px; border-bottom: 1px solid lightgrey">
+        <div class="col-sm-4 pull-right">
+            <div class="book-cart">
                 <h4><i class="glyphicon glyphicon-shopping-cart"></i> Add into cart</h4>
                 <div class="row">
                     <div class="col-sm-4">
@@ -96,8 +86,6 @@
 
             <!--Write Feedback-->
             <div class="book-new-feedback">
-
-
               {{#if ownFeedback}}
                 {{#each ownFeedback as |feedback|}}
                     <h4>Your Feedback</h4>
@@ -125,6 +113,9 @@
                           <div class="col-sm-3 input-group-sm">
                             {{input type="number" class="form-control" max=10 min=0 id="inputRating" placeholder="" value=rating}}
                           </div>
+                          <div class="col-sm-4 new-feedback-rating">
+                            {{show-star-rating rating=rating}}
+                          </div>
                           <div class="col-sm-2 pull-right">
                               <!--<button type="submit" class="btn btn-primary">Submit</button>-->
                               <button {{action 'submitFeedback'}} class="btn btn-primary pull-right btn-sm">Submit</button>
@@ -133,16 +124,14 @@
                   </form>
               {{/if}}
             </div>
-
-            <!--Suggestions-->
-            {{!#if customer}}
-              <h4>Suggestions</h4>
-          {{#each model.suggestions as |suggestion|}}
-            {{book-suggestion book=suggestion}}
-          {{/each}}
-
-            {{!/if}}
         </div>
+
+
+        <!--Suggestions-->
+      {{!#if customer}}
+
+
+      {{!/if}}
     </div>
 
 </div>

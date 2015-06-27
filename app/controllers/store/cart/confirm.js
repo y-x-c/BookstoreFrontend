@@ -5,12 +5,17 @@ export default Ember.Controller.extend({
   totalPrice: Ember.computed.alias('controllers.store/cart.totalPrice'),
   customer: Ember.computed.alias('controllers.application.customer'),
 
-
   actions: {
     confirm: function() {
       var addr = this.get('addr');
 
+      if(!addr) {
+        this.set('addressError', true);
+        return;
+      }
+
       var newOrder = this.store.createRecord('order', {
+        //id: moment(),
         address: addr,
         customer: this.get('customer'),
       });
@@ -23,6 +28,13 @@ export default Ember.Controller.extend({
 
           item.set('amount', 0);
         }
+
+        self.set('addressError', false);
+        self.transitionToRoute('store.order');
+      },
+      function() {
+        self.set('hasError', true);
+        self.store.deleteRecord(newOrder);
       });
     }
   },

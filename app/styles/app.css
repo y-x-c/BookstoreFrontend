@@ -105,12 +105,16 @@ body {
 }
 
 .book-info tr:first-child td {
-  border-top: 0px solid grey;
-
+  /*border-top: 0px solid grey;*/
 }
 
-.book-info td {
-  font-weight: 300;
+.book-info {
+  padding-top: 20px;
+}
+
+.book-info > table > tbody > tr > td {
+  border-top: 0px solid grey;
+  /*font-weight: 300;*/
 }
 
 .full-star {
@@ -151,4 +155,18 @@ body {
 .navbar-nav > li > a.active {
   color: #555;
   background-color: #e7e7e7;
+}
+
+.feedback {
+  margin-bottom: 30px;
+}
+
+.new-feedback-rating {
+  padding: 0px;
+  padding-top: 5px;
+}
+
+.book-cart {
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgrey;
 }

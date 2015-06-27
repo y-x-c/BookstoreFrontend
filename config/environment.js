@@ -40,7 +40,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    baseURL: '/~fudanu33/'
   }
 
   ENV.contentSecurityPolicy = {

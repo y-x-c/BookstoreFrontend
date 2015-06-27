@@ -1,19 +1,60 @@
 {{#if display}}
-    <div class="feedback" style="margin-bottom: 15px">
+    <div class="feedback">
         <div class="row">
-            <div class="col-sm-1">
+            <div class="col-xs-1">
                 <div class="btn-group-vertical btn-group-xs" role="group" aria-label="usefulness">
                   {{#if feedback.opinion}}
-                      <button type="button" {{bind-attr class=":btn veryUseful:btn-primary:btn-default veryUseful::disabled"}}><i class="glyphicon glyphicon-backward" style="transform: rotate(90deg)"></i></button>
+                      <button type="button" {{bind-attr class=":btn veryUseful:btn-primary:btn-default veryUseful::disabled"}}>
+                          <i class="glyphicon glyphicon-backward" style="transform: rotate(90deg)"></i>
+                        {{#if veryUseful}}
+                          {{#if isNegative}}
+                              <p>{{to-fixed fixed=1 num=feedback.usefulness}}</p>
+                          {{else}}
+                              <p>{{to-fixed fixed=2 num=feedback.usefulness}}</p>
+                          {{/if}}
+                        {{/if}}
+                      </button>
                       <button type="button" {{bind-attr class=":btn useful:btn-primary:btn-default useful::disabled"}}>
                           <i class="glyphicon glyphicon-triangle-top"></i>
-                          <p>{{feedback.usefulness}}</p>
+                        {{#if useful}}
+                          {{#if isNegative}}
+                              <p>{{to-fixed fixed=1 num=feedback.usefulness}}</p>
+                          {{else}}
+                              <p>{{to-fixed fixed=2 num=feedback.usefulness}}</p>
+                          {{/if}}
+                        {{/if}}
                       </button>
-                      <button type="button" {{bind-attr class=":btn useless:btn-primary:btn-default useless::disabled"}}><i class="glyphicon glyphicon-triangle-bottom"></i></button>
+                      <button type="button" {{bind-attr class=":btn useless:btn-primary:btn-default useless::disabled"}}>
+                          <i class="glyphicon glyphicon-triangle-bottom"></i>
+                        {{#if useless}}
+                          {{#if isNegative}}
+                              <p>{{to-fixed fixed=1 num=feedback.usefulness}}</p>
+                          {{else}}
+                              <p>{{to-fixed fixed=2 num=feedback.usefulness}}</p>
+                          {{/if}}
+                        {{/if}}
+                      </button>
                   {{else}}
-                      <button type="button" class="btn btn-default" {{action 'assess' 2}}><i class="glyphicon glyphicon-backward" style="transform: rotate(90deg)"></i></button>
-                      <button type="button" class="btn btn-default" {{action 'assess' 1}}><i class="glyphicon glyphicon-triangle-top"></i></button>
-                      <button type="button" class="btn btn-default" {{action 'assess' -1}}><i class="glyphicon glyphicon-triangle-bottom"></i></button>
+                      <button type="button" class="btn btn-default" {{action 'assess' 2}}>
+                          <i class="glyphicon glyphicon-backward" style="transform: rotate(90deg)"></i>
+                      </button>
+                    {{#if isNegative}}
+                        <button type="button" class="btn btn-default" {{action 'assess' 1}}>
+                            <i class="glyphicon glyphicon-triangle-top"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" {{action 'assess' -1}}>
+                            <i class="glyphicon glyphicon-triangle-bottom"></i>
+                            <p>{{to-fixed fixed=1 num=feedback.usefulness}}</p>
+                        </button>
+                    {{else}}
+                        <button type="button" class="btn btn-default" {{action 'assess' 1}}>
+                            <i class="glyphicon glyphicon-triangle-top"></i>
+                            <p>{{to-fixed fixed=2 num=feedback.usefulness}}</p>
+                        </button>
+                        <button type="button" class="btn btn-default" {{action 'assess' -1}}>
+                            <i class="glyphicon glyphicon-triangle-bottom"></i>
+                        </button>
+                    {{/if}}
                   {{/if}}
                 </div>
             </div>

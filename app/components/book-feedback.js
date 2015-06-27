@@ -35,8 +35,14 @@ export default Ember.Component.extend({
   display: Ember.computed('customer', {
     get: function() {
       var cid = this.get('customer.id');
-      console.log(cid);
+
       return cid === null || (this.get('feedback.customer.id') != cid);
+    }
+  }),
+
+  isNegative: Ember.computed('feedback.usefulness', {
+    get: function() {
+      return this.get('feedback.usefulness') < 0;
     }
   })
 });

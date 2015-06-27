@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   needs: ['application'],
   customer: Ember.computed.alias('controllers.application.customer'),
+
+  rating: 10,
   actions: {
     submitFeedback: function() {
       var customer = this.get('customer');
@@ -42,6 +44,8 @@ export default Ember.Controller.extend({
           });
           cartItem.save();
         }
+
+        self.transitionToRoute('store.cart');
       });
     }
   },
