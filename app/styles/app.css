@@ -120,3 +120,7 @@ body {
 .half-star {
   color: rgba(255, 140, 0, 0.7);
 }
+
+.search-condition {
+  margin-bottom: 15px;
+}

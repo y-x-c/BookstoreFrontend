@@ -8,8 +8,8 @@
     <div class="col-sm-12 book-main">
         <div class="row">
             <h3>Overview</h3>
-            <p>Total price: </p>
-            <p>Address: {{model.price}}</p>
+            <p><strong>Total price:</strong> ￥ {{to-fixed num=model.totalPrice fixed=2}}</p>
+            <p><strong>Address:</strong> {{model.address}}</p>
 
             <h3>Details</h3>
             <table class="table table-striped table-hover">
@@ -18,16 +18,18 @@
                     <th>#</th>
                     <th>Title</th>
                     <th>Amount</th>
-                    <th>Unit Price</th>
+                    <th>Unit Price ￥</th>
+                    <th>Subtotal ￥</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{#each model.orderItems as |item|}}
                     <tr>
                         <th>{{#link-to 'store.book' item.book}}{{item.book.id}}{{/link-to}}</th>
-                        <th>{{#link-to 'store.book' item.book}}{{item.book.title}}{{/link-to}}</th>
-                        <th>{{item.amount}}</th>
-                        <th>{{item.price}}</th>
+                        <td>{{#link-to 'store.book' item.book}}{{item.book.title}}{{/link-to}}</td>
+                        <td>{{to-fixed num=item.amount fixed=2}}</td>
+                        <td>{{to-fixed num=item.price fixed=2}}</td>
+                        <td>{{a-mul-b a=item.amount b=item.price}}</td>
                     </tr>
                 {{/each}}
                 </tbody>

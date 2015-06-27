@@ -13,14 +13,16 @@
                     <th>#</th>
                     <th>Time</th>
                     <th>Address</th>
+                    <th>Price ￥</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{#each customer.orders as |order|}}
                 <tr>
                     <th>{{#link-to 'store.order' order}}{{order.id}}{{/link-to}}</th>
-                    <th>{{order.time}}</th>
-                    <th>{{order.address}}</th>
+                    <td>{{order.time}}</td>
+                    <td>{{order.address}}</td>
+                    <td>{{to-fixed fixed=2 num=order.totalPrice}}</td>
                 </tr>
                 {{/each}}
                 </tbody>

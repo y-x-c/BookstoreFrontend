@@ -3,10 +3,14 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   queryParams: ['all', 'orderBy'],
 
+  offset: 0,
+  limit: 5,
+
   actions: {
     search: function() {
       var conditions = this.get('conditions');
       var where = [];
+      var self = this;
 
       for(var i = 0; i < conditions.get('length'); i++) {
         var condition = conditions[i];
@@ -18,32 +22,41 @@ export default Ember.Controller.extend({
         where.push({term: term, cond: cond, conj: conj});
       }
 
-      console.log(where);
-
-      this.set('result', this.store.find('book', {
+      this.store.find('book', {
         advanced: JSON.stringify(where),
-        orderBy: this.get('sortBy') + this.get('orderBy')
-      }));
+        orderBy: this.get('sortBy') + this.get('orderBy'),
+        offset: this.get('offset'),
+        limit: this.get('limit')
+      }).then(function(result) {
+        self.set('result', result);
+      });
+
+      this.set('displayResult', true);
     },
 
     sortByYr: function() {
       this.set('sortBy', 0);
+      this.set('offset', 0);
     },
 
     sortByFb: function() {
       this.set('sortBy', 2);
+      this.set('offset', 0);
     },
 
     sortByTFb: function() {
       this.set('sortBy', 4);
+      this.set('offset', 0);
     },
 
     descent: function() {
       this.set('orderBy', 1);
+      this.set('offset', 0);
     },
 
     ascent: function() {
       this.set('orderBy', 0);
+      this.set('offset', 0);
     },
 
     or: function(index) {
@@ -84,6 +97,10 @@ export default Ember.Controller.extend({
 
     term: function(condition, term) {
       condition.set('term', term);
+    },
+
+    goBack: function() {
+      this.set('displayResult', false);
     }
   },
 
@@ -108,6 +125,22 @@ export default Ember.Controller.extend({
     this.set('ascent', orderBy === 0);
 
     if(this.get('conditions')) this.send('search');
+  }),
+
+  total: Ember.computed("result", {
+    get: function() {
+      return this.get('result.meta.total') || 0;
+    }
+  }),
+
+  pagecount: Ember.computed("limit", "total", {
+    get: function() {
+      return Math.ceil(this.get('total') / this.get('limit'));
+    }
+  }),
+
+  limitChanged: Ember.observer('limit', function() {
+    this.send('search'); // if I send 'search' from pagination-limit, results are wrong
   })
 
 

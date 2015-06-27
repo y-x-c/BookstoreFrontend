@@ -28,17 +28,20 @@
                     <p class="list-group-item-text">Ascent</p>
                 </a>
             </div>
-            <p>{{#link-to 'store.advancedSearch'}}Advanced search{{/link-to}}</p>
+            <p>{{#link-to 'store.search'}}Simple search{{/link-to}}</p>
         </div>
 
         <div class="col-sm-8 search-main">
 
-          {{#if result}}
+          {{#if displayResult}}
 
 
               <div class="result-head" style="margin-bottom:15px; border-bottom: 1px solid lightgrey;">
-                  <h4>We've found 791,141 results</h4>
+                  <h4>We've found {{total}} result(s)</h4>
               </div>
+
+              <button class="btn btn-default pull-left" {{action 'goBack'}}><i class="glyphicon glyphicon-arrow-left"></i> Go back</button>
+            {{pagination-limit limit=limit class="pull-right"}}
             {{#each result as |book|}}
                 <div class="book-list row" style="margin-bottom:15px; border-bottom: 1px solid lightgrey;">
                     <div class="col-xs-9">
@@ -58,12 +61,14 @@
                     </div>
                 </div>
             {{/each}}
+            {{pagination-nav max=pagecount offset=offset limit=limit goto='goto'}}
+
+
 
           {{else}}
               <h4>Conditions</h4>
             {{#each conditions as |condition index|}}
-                <div class="row">
-                    <div class="col-sm-8">
+              <div class="search-condition">
                         <div class="input-group">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-default">{{condition.term}}</button>
@@ -80,19 +85,18 @@
                                 </ul>
                             </div>
                           {{input type="text" class="form-control" value=condition.cond aria-label="Text input with segmented button dropdown"}}
+                            <div class="input-group-btn " role="group" aria-label="Modify Condition">
+                                <button type="button" {{action 'or' index}} {{bind-attr class=":btn :btn-default condition.OR:active condition.disabled:disabled"}}>OR</button>
+                                <button type="button" {{action 'and' index}} {{bind-attr class=":btn :btn-default condition.AND:active condition.disabled:disabled"}}>AND</button>
+                                <button type="button" {{action 'insert' index}} class="btn btn-default btn-success">+</button>
+                                <button type="button" {{action 'remove' index}} class="btn btn-default btn-danger">-</button>
+                            </div>
                         </div><!-- /.input-group -->
-                    </div>
-
-                    <div class="col-sm-4">
-                        <div class="btn-group" role="group" aria-label="Modify Condition">
-                            <button type="button" {{action 'or' index}} {{bind-attr class=":btn :btn-default condition.OR:active condition.disabled:disabled"}}>OR</button>
-                            <button type="button" {{action 'and' index}} {{bind-attr class=":btn :btn-default condition.AND:active condition.disabled:disabled"}}>AND</button>
-                            <button type="button" {{action 'insert' index}} class="btn btn-default btn-success">+</button>
-                            <button type="button" {{action 'remove' index}} class="btn btn-default btn-danger">-</button>
-                        </div>
-                    </div>
-                </div>
+              </div>
             {{/each}}
+
+              <button class="btn btn-primary pull-right" {{action 'search'}}>Search</button>
+
           {{/if}}
         </div>
 

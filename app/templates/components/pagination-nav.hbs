@@ -1,0 +1,14 @@
+<ul class="pagination">
+    <li {{bind-attr class="disabledPrev:disabled"}}>
+        <a href="/" aria-label="Previous" {{action 'prev'}}><span aria-hidden="true">&laquo;</span></a>
+    </li>
+
+  {{#each pages as |page index|}}
+      <li {{bind-attr class="page.disabled:disabled page.active:active"}}>
+          <a href="/" aria-label="Previous" {{action 'goto' page.value}}><span aria-hidden="true">{{page.value}}</span></a>
+      </li>
+  {{/each}}
+    <li {{bind-attr class="disabledNext:disabled"}}>
+        <a href="/" aria-label="Previous" {{action 'next'}}><span aria-hidden="true">&raquo;</span></a>
+    </li>
+</ul>
