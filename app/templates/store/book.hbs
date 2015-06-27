@@ -56,13 +56,33 @@
             </div>
 
             <!--Feedback-->
+          <h3>Feedbacks</h3>
+          <div class="row" id="book-feedbacks-options">
+              <div class="col-xs-12">
+                {{pagination-limit limit=limit class="pull-right"}}
 
-            <h3>Feedbacks</h3>
+                  <div class="btn-group pull-right">
+                      <button type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{orderBy}}</button>
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="caret"></span>
+                          <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        {{#each options as |option|}}
+                            <li><a href="#" {{action 'select' option}}>{{option}}</a></li>
+                        {{/each}}
+                      </ul>
+                  </div>
+              </div>
+          </div>
 
 
-          {{#each model.feedbacks as |feedback|}}
+
+          {{#each feedbacks as |feedback|}}
             {{book-feedback feedback=feedback customer=customer}}
           {{/each}}
+
+          {{pagination-nav max=pagecount offset=offset limit=limit search='updateFeedbacks'}}
 
         </div>
 

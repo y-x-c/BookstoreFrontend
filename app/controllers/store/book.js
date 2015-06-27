@@ -47,6 +47,22 @@ export default Ember.Controller.extend({
 
         self.transitionToRoute('store.cart');
       });
+    },
+
+    updateFeedbacks: function() {
+      var self = this;
+      var feedbacks = this.store.find('feedback', {
+        isbn: this.get('model.id'),
+        limit: this.get('limit'),
+        offset: this.get('offset'),
+        orderBy: (this.get('orderBy') === 'Time' ? 1 : 0)
+      }).then(function(feedbacks) {
+        self.set('feedbacks', feedbacks); // cannot put outside "then"
+      });
+    },
+
+    select: function(option) {
+      this.set('orderBy', option);
     }
   },
 
@@ -66,5 +82,34 @@ export default Ember.Controller.extend({
         return feedbackBook === modelBook && feedbackCustomer === customer;
       });
     }
+  }),
+
+  limit: 5,
+  offset: 0,
+  total: 0,
+  options: ['Usefulness', 'Time'],
+  orderBy: 'Usefulness',
+
+  updateFeedbacks: Ember.observer('customer', 'model.id', function(){
+    this.send('updateFeedbacks');
+  }),
+
+  feedbacksChanged: Ember.observer('feedbacks', function() {
+    this.set('total', this.get('feedbacks.meta.total') || 0);
+  }),
+
+  pagecount: Ember.computed("limit", "total", {
+    get: function() {
+      return Math.ceil(this.get('total') / this.get('limit'));
+    }
+  }),
+
+  limitChanged: Ember.observer('limit', function() {
+    this.send('updateFeedbacks');
+  }),
+
+  orderByChanged: Ember.observer('orderBy', function() {
+    this.send('updateFeedbacks');
   })
+
 });
