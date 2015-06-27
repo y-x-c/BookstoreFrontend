@@ -4,25 +4,26 @@
             <h2>{{model.username}}</h2>
         </div>
     </div>
+  {{#if customer}}
+      <div class="row">
+          <div class="col-sm-4">
+              <h3>Trust him/her</h3>
+              <button type="button" {{action 'trust' true}} {{bind-attr class=":btn trusted:btn-success:btn-default disabled:disabled"}}>
+                  <span class="glyphicon glyphicon-ok" aria-hidden="trust"></span> Trust
+              </button>
+              <button type="button" {{action 'trust' false}} {{bind-attr class=":btn untrusted:btn-danger:btn-default  disabled:disabled"}}>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="untrust"></span> Distrust
+              </button>
+          </div>
+      </div>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <h3>Trust him/her</h3>
-            <button type="button" {{action 'trust' true}} {{bind-attr class=":btn trusted:btn-success:btn-default disabled:disabled"}}>
-                <span class="glyphicon glyphicon-ok" aria-hidden="trust"></span> Trust
-            </button>
-            <button type="button" {{action 'trust' false}} {{bind-attr class=":btn untrusted:btn-danger:btn-default  disabled:disabled"}}>
-                <span class="glyphicon glyphicon-remove" aria-hidden="untrust"></span> Distrust
-            </button>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <h3>Details (Only if you are trusted)</h3>
-            <p><strong>Name: </strong>{{model.name}}</p>
-            <p><strong>Email: </strong>{{model.email}}</p>
-            <p><strong>Phone: </strong>{{model.phone}}</p>
-        </div>
-    </div>
+      <div class="row">
+          <div class="col-sm-12">
+              <h3>Details (Only if you are trusted)</h3>
+              <p><strong>Name: </strong>{{model.name}}</p>
+              <p><strong>Email: </strong>{{model.email}}</p>
+              <p><strong>Phone: </strong>{{model.phone}}</p>
+          </div>
+      </div>
+  {{/if}}
 </div>

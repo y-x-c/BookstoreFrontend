@@ -32,7 +32,7 @@ Router.map(function() {
     });
   });
 
-  this.route('store', { path: '/' } , function() {
+  this.route('store', function() {
     this.route('book', { path: '/book/:id' });
     this.route('login');
     this.route('signup');
@@ -45,6 +45,8 @@ Router.map(function() {
     this.route('advancedSearch');
     this.route('customer', {path: '/customer/:id'});
   });
+
+  this.route('index', { path: '/' });
 });
 
 export default Router;
