@@ -54,4 +54,8 @@ export default Ember.Controller.extend({
   limitChanged: Ember.observer('limit', function() {
     this.send('updatePopularBooks'); // if I send 'search' from pagination-limit, results are wrong
   }),
+
+  offsetChanged: Ember.observer('offset', function() {
+    this.send('updatePopularBooks');
+  })
 });

@@ -51,6 +51,7 @@ export default Ember.Controller.extend({
 
     updateFeedbacks: function() {
       var self = this;
+
       var feedbacks = this.store.find('feedback', {
         isbn: this.get('model.id'),
         limit: this.get('limit'),
@@ -109,6 +110,10 @@ export default Ember.Controller.extend({
   }),
 
   orderByChanged: Ember.observer('orderBy', function() {
+    this.send('updateFeedbacks');
+  }),
+
+  offsetChanged: Ember.observer('offset', function() {
     this.send('updateFeedbacks');
   })
 

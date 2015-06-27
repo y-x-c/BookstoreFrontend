@@ -16,7 +16,6 @@
 
                 <p><strong>ISBN: </strong>{{model.id}}</p>
 
-
                 <p><strong>Publisher: </strong>{{model.publisher.name}}</p>
 
                 <p><strong>Author: </strong>{{#each model.authors as |author|}}{{#link-to 'store'}}{{author.name}}{{/link-to}} {{/each}}</p>
@@ -145,13 +144,6 @@
               {{/if}}
             </div>
         </div>
-
-
-        <!--Suggestions-->
-      {{!#if customer}}
-
-
-      {{!/if}}
     </div>
 
 </div>

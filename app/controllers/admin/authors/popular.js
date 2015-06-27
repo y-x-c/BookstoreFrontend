@@ -47,4 +47,8 @@ export default Ember.Controller.extend({
   limitChanged: Ember.observer('limit', function() {
     this.send('updatePopularAuthors');
   }),
+
+  offsetChanged: Ember.observer('offset', function() {
+    this.send('updatePopularAuthors');
+  })
 });

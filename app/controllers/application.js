@@ -12,4 +12,19 @@ export default Ember.Controller.extend({
 
     this.store.find('cart', {customer: this.get('customer.id')});
   }),
+
+  askWhoAmI: function() {
+    var self = this;
+    var host = this.store.adapterFor('application').get('host');
+    var namespace = this.store.adapterFor('application').get('namespace');
+    var url = [host, namespace, "whoAmI"].join('/');
+
+    Ember.$.getJSON(url).then(function(data) {
+      var customer = self.store.push('customer', data.customer);
+
+      self.set('customer', customer);
+    }, function() {
+
+    });
+  }
 });

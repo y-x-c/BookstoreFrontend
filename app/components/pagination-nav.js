@@ -8,22 +8,18 @@ export default Ember.Component.extend({
     goto: function(page) {
       if(page == this.get('current')) return;
       this.set('offset', this.get('limit') * (page - 1));
-      this.sendAction('search');
     },
 
     prev: function() {
       var page = this.get('current') - 1;
       if(page < this.get('min')) return ;
       this.set('offset', this.get('limit') * (page - 1));
-      this.sendAction('search');
     },
 
     next: function() {
       var page = this.get('current') + 1;
       if(page > this.get('max')) return;
       this.set('offset', this.get('limit') * (page - 1));
-      this.set('offset', this.get('offset') + this.get('limit'));
-      this.sendAction('search');
     }
   },
 
