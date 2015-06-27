@@ -48,7 +48,7 @@
                         <h3>{{#link-to 'store.book' book}}《{{book.title}}》{{/link-to}} <small>{{book.subtitle}}</small></h3>
                         <h5>
                           {{print-date date=book.pubdate}} By
-                          {{#each book.authors as |author|}}{{#link-to 'store'}}{{author.name}}{{/link-to}} {{/each}}
+                          {{#each book.authors as |author|}}{{#link-to 'store.author' author}}{{author.name}}{{/link-to}} {{/each}}
                         </h5>
                     </div>
                     <div class="col-xs-2 pull-right book-list-cart" style="margin-top: 20px">

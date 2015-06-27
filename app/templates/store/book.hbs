@@ -18,7 +18,7 @@
 
                 <p><strong>Publisher: </strong>{{model.publisher.name}}</p>
 
-                <p><strong>Author: </strong>{{#each model.authors as |author|}}{{#link-to 'store'}}{{author.name}}{{/link-to}} {{/each}}</p>
+                <p><strong>Author: </strong>{{#each model.authors as |author|}}{{#link-to 'store.author' author}}{{author.name}}{{/link-to}} {{/each}}</p>
 
                 <p><strong>Amount: </strong>{{model.amount}}</p>
 

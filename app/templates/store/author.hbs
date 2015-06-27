@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="page-header">
+        <h2>{{model.name}}</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Introduction</h3>
+            <pre>{{model.intro}}</pre>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Literatures</h3>
+        </div>
+      {{#each model.books as |book|}}
+          <div class="col-sm-2">
+            {{book-suggestion book=book}}
+          </div>
+      {{/each}}
+    </div>
+</div>
