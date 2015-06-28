@@ -73,6 +73,15 @@
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#order" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-arrows-v"></i> Order <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="order" class="collapse nav-sidebar-collapse" aria-expanded="false" style="height: 0px;">
+                        <li>
+                          {{#link-to 'admin.orders.latest'}}Show latest orders{{/link-to}}
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <div class="col-xs-9 col-xs-offset-3 col-md-10 col-md-offset-2 admin-main">

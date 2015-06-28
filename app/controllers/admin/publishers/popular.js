@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
 
       var url = [host, namespace, "publishers/popular"].join('/');
       url += "?start=" + start + "&end=" + end;
-      url += "&limit=" + this.get('limit') + "%offset=" + this.get('offset');
+      url += "&limit=" + this.get('limit') + "&offset=" + this.get('offset');
 
       Ember.$.getJSON(url).then(function (data) {
         var func = function () {

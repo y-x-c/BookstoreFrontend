@@ -30,6 +30,10 @@ Router.map(function() {
       this.route('trusted');
       this.route('useful');
     });
+
+    this.route('orders', function() {
+      this.route('latest');
+    });
   });
 
   this.route('store', function() {
