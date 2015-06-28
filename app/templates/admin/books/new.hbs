@@ -44,7 +44,7 @@
                 <div class="col-sm-8">
                     <!--<input type="text" class="form-control" id="inputPublisher" placeholder="Publisher">-->
                   {{auto-complete _class="form-control" _id="inputPublisher" _placeholder="Publisher"
-                  store=this.store modelName="publisher" term="name" value=publisher}}
+                  store=this.store modelName="publisher" term="name" value=publisher textValue=tpublisher}}
                 </div>
             </div>
             <div {{bind-attr class=":form-group authorsError:has-feedback authorsError:has-error" }}>

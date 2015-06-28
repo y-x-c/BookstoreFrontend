@@ -45,6 +45,7 @@ Router.map(function() {
     this.route('advancedSearch');
     this.route('customer', {path: '/customer/:id'});
     this.route('author', {path: '/author/:id'});
+    this.route('expo');
   });
 
   this.route('index', { path: '/' });

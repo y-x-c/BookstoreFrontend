@@ -30,7 +30,7 @@ export default Ember.Controller.extend({
         }
 
         self.set('addressError', false);
-        self.transitionToRoute('store.order');
+        self.transitionToRoute('store.orders');
       },
       function() {
         self.set('hasError', true);

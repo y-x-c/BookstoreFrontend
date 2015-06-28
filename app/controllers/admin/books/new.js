@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   actions: {
     submit: function () {
-      var notNullAttrs = ['ISBN', 'title', 'subtitle', 'publisher', 'amount', 'price', 'pubdate'];
+      var notNullAttrs = ['ISBN', 'title', 'publisher', 'amount', 'price', 'pubdate'];
       var ret = false;
       var self = this;
 
@@ -39,6 +39,7 @@ export default Ember.Controller.extend({
       book.save().then(
         function(response) {
           self.reset();
+
           self.set('hasAdded', true);
           self.set('hasError', false);
 
@@ -61,13 +62,14 @@ export default Ember.Controller.extend({
   authors: [],
 
   reset: function() {
-    var attrs = ['ISBN', 'title', 'subtitle', 'publisher', 'amount', 'price', 'pubdate', 'format', 'summary', 'img'];
+    var attrs = ['ISBN', 'title', 'publisher', 'amount', 'price', 'pubdate', 'format', 'summary', 'img'];
     var self = this;
     attrs.forEach(function(attr) {
       self.set(attr, null);
     });
 
-    this.set(authors, []);
+    self.set('authors', []);
+    self.set('tpublisher', null);
   }
 
 });

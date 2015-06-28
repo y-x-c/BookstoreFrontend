@@ -26,6 +26,7 @@ export default Ember.Controller.extend({
     },
     search: function() {
       this.transitionToRoute('store.search', {queryParams:{all: this.get('keywords')}});
+      this.set('keywords', null);
     }
   },
 

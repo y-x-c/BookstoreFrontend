@@ -22,7 +22,10 @@
 
           {{/if}}
 
+
             <ul class="nav navbar-nav">
+                <li>{{#link-to 'store.expo'}}Expo{{/link-to}}</li>
+
               {{#if customer}}
                   <li>{{#link-to 'store.search'}}Search{{/link-to}}</li>
                   <li>{{#link-to 'store.orders'}}Orders{{/link-to}}</li>

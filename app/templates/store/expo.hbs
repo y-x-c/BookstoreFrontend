@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="page-header">
+        <h2>Best Books of this Month</h2>
+    </div>
+  {{log popularRows}}
+  {{#each popularRows as |row|}}
+      <div class="row">
+        {{#each row as |book|}}
+            <div class="col-sm-3">
+              {{book-suggestion book=book}}
+            </div>
+        {{/each}}
+      </div>
+  {{/each}}
+</div>
