@@ -178,3 +178,11 @@ body {
 /*.book-feedbacks-options > div > div.btn-group{*/
   /*margin-left: 20px;*/
 /*}*/
+
+.datetime-picker {
+  background: #fff;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
