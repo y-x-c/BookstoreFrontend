@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   setupController: function(controller, model) {
-    controller.set('start', moment().subtract(29, 'days'));
+    controller.set('start', moment().subtract(7, 'days'));
+    controller.set('startVisits', moment().subtract(7, 'days'));
   }
 });
