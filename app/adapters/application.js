@@ -8,6 +8,6 @@ export default DS.RESTAdapter.extend({
     return this._super(url, method, hash);
   },
   namespace: 'api',
-  //host: 'http://localhost:8080'
-  host: 'http://10.141.208.26:8080/~fudanu33'
+  host: 'http://localhost:8080'
+  //host: 'http://10.141.208.26:8080/~fudanu33'
 });

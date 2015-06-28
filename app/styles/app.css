@@ -129,6 +129,10 @@ body {
   margin-bottom: 15px;
 }
 
+.nav-sidebar-collapse {
+  height: 0px;
+}
+
 .nav-sidebar-collapse > li > a {
   display: block;
   padding: 10px;
@@ -211,8 +215,8 @@ body {
 
 .index-masthead {
   background-color: rgb(51, 122, 183);
-  margin: -20px 0px -100px;
-  padding: 270px 0;
+  margin: -20px 0px 0px;
+  padding: 100px 0;
   text-align: center;
 }
 
@@ -238,7 +242,7 @@ body {
   border: 1px solid white;
   border-radius: 5px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 200;
   height: 50px;
   padding: 10px;
   margin: 15px;
@@ -250,4 +254,76 @@ body {
 
 .my-btn a:hover {
   text-decoration: none;
+}
+
+.feature {
+  margin: 0px;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.feature-body {
+  font-size: 18px;
+  color: #696969;
+  font-weight: 200;
+}
+
+.feature-btn a{
+  color: rgb(51, 122, 183);
+  font-size: 15px;
+  border: 1px solid rgb(51, 122, 183);
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 200;
+  height: 50px;
+  padding: 10px;
+}
+
+.feature-btn {
+  margin: 25px;
+}
+
+.feature-btn a:hover {
+  text-decoration: none;
+}
+
+.admin-chart {
+  padding-top: 20px;
+}
+
+.btn-up {
+  transform: rotate(90deg);
+}
+
+.book-cart-price {
+  font-size: 20px;
+}
+
+.book-summary {
+  font-size: 13px;
+  margin: 0;
+}
+
+.result-header {
+  margin-bottom:15px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.book-list {
+  margin-bottom:15px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.book-list-cart {
+  margin-top: 20px;
+}
+
+.book-list-summary {
+  max-height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-searchbar {
+  margin-top:30px;
 }

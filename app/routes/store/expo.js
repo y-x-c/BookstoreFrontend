@@ -7,9 +7,8 @@ export default Ember.Route.extend({
     start = start.format("YYYY-MM-DD HH:mm:ss");
     end = end.format("YYYY-MM-DD HH:mm:ss");
 
-    this.store.find('book', {start: start, end: end, limit: 8}).then(
+    this.store.find('book', {start: start, end: end, limit: 12}).then(
       function(data) {
-        console.log(data);
         var popular = data;
         var i = 0;
         var rows = [];

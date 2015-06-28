@@ -9,7 +9,7 @@
                   {{my-daterange-picker _id="daterange-picker-orders" startDate=start endDate=end class="pull-left"}}
                 </div>
             </div>
-            <div style="padding-top: 20px">
+            <div class="admin-chart">
               {{#if display}}
                 {{ember-chart type=type data=data options=options}}
               {{else}}
@@ -31,7 +31,7 @@
                   {{my-daterange-picker _id="daterange-picker-visits" startDate=startVisits endDate=endVisits class="pull-left"}}
                 </div>
             </div>
-            <div style="padding-top: 20px">
+            <div class="admin-chart">
               {{#if display}}
                 {{ember-chart type=typeVisits data=dataVisits options=optionsVisits}}
               {{else}}

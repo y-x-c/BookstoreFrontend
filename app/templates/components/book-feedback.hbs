@@ -5,7 +5,7 @@
                 <div class="btn-group-vertical btn-group-xs" role="group" aria-label="usefulness">
                   {{#if feedback.opinion}}
                       <button type="button" {{bind-attr class=":btn veryUseful:btn-primary:btn-default veryUseful::disabled"}}>
-                          <i class="glyphicon glyphicon-backward" style="transform: rotate(90deg)"></i>
+                          <i class="glyphicon glyphicon-backward btn-up"></i>
                         {{#if veryUseful}}
                           {{#if isNegative}}
                               <p>{{to-fixed fixed=1 num=feedback.usefulness}}</p>
@@ -36,7 +36,7 @@
                       </button>
                   {{else}}
                       <button type="button" class="btn btn-default" {{action 'assess' 2}}>
-                          <i class="glyphicon glyphicon-backward" style="transform: rotate(90deg)"></i>
+                          <i class="glyphicon glyphicon-backward btn-up"></i>
                       </button>
                     {{#if isNegative}}
                         <button type="button" class="btn btn-default" {{action 'assess' 1}}>

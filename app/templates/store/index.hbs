@@ -5,13 +5,75 @@
         <p class="lead">
             Welcome to Yuxin's Bookstore
         </p>
-      <div class="btn-wrapper">
+        <div class="btn-wrapper">
         <span class="my-btn">
-            {{#link-to 'store.signup' }}Sign Up Now{{/link-to}}
+          {{#link-to 'store.signup' }}Sign up Now{{/link-to}}
         </span>
         <span class="my-btn">
             <a href="http://github.com/Orthocenter/BookstoreFrontend">View on Github</a>
         </span>
-      </div>
+        </div>
+    </div>
+</div>
+
+<div class="feature">
+    <div class="container">
+        <h2 class="feature-head">Know everything you want.</h2>
+        <p class="feature-body">Bookstore provides you a smart auto complete search bar that can predict what you want.</p>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+              {{auto-complete-books-nav _class="form-control" _placeholder="Try it now, eg: 日"
+              store=this.store modelName="book" term="all"}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="feature">
+    <div class="container">
+        <h2 class="feature-head">Give you useful suggestions.</h2>
+        <p class="feature-body">Bookstore also provides smart buying suggestions for you.</p>
+        <div class="row">
+            <div class="col-sm-1"></div>
+          {{#each book.suggestions as |suggestion|}}
+              <div class="col-sm-2">
+                {{book-suggestion book=suggestion}}
+              </div>
+          {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="feature">
+    <div class="container">
+        <h2 class="feature-head">Browse as fast as HK reporters.</h2>
+        <p class="feature-body">Bookstore implemented a pagination component and applied it to almost everywhere for your convenience.</p>
+        <div class="row">
+          {{pagination-nav max=33 offset=offset limit=5}}
+        </div>
+    </div>
+</div>
+
+<div class="feature">
+    <div class="container">
+        <h2 class="feature-head">Know others' points easily.</h2>
+        <p class="feature-body">With this Bookstore's component, you can make your correct decision efficiently.</p>
+      {{show-star-rating rating=17}}
+    </div>
+</div>
+
+<div class="feature">
+    <div class="container">
+        <h2 class="feature-head">And also thoughtful for managers...</h2>
+        <p class="feature-body">Bookstore provides a lot of statistic data and charts for you to know your customers better. </p>
+    </div>
+</div>
+
+<div class="feature">
+    <div class="container">
+        <div class="feature-btn">
+            <a href="http://github.com/Orthocenter/BookstoreFrontend">View on Github</a>
+        </div>
+        <p class="feature-body">Bookstore is opensource. Go to Github for more details. </p>
     </div>
 </div>
