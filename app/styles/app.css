@@ -196,3 +196,58 @@ body {
   border: 1px solid #ccc;
   border-radius: 3px;
 }
+
+.footer {
+  margin-top: 100px;
+  background: #f8f8f8;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.footer p {
+  color: #767676;
+}
+
+.index-masthead {
+  background-color: rgb(51, 122, 183);
+  margin: -20px 0px -100px;
+  padding: 270px 0;
+  text-align: center;
+}
+
+.logo {
+  border: 1px solid white;
+  border-radius: 15%;
+  font-size: 100px;
+  margin: 0 auto;
+  color: white;
+  height: 144px;
+  width: 144px;
+  margin-bottom: 30px;
+}
+
+.index-masthead .lead {
+  color: white;
+  font-size: 24px;
+}
+
+.my-btn a {
+  color: white;
+  font-size: 15px;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 400;
+  height: 50px;
+  padding: 10px;
+  margin: 15px;
+}
+
+.btn-wrapper {
+  margin: 30px;
+}
+
+.my-btn a:hover {
+  text-decoration: none;
+}
