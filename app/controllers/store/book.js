@@ -67,7 +67,7 @@ export default Ember.Controller.extend({
     }
   },
 
-  ownFeedback: Ember.computed('customer', {
+  ownFeedback: Ember.computed('customer', 'model', {
     get: function() {
       var customer = this.get('customer');
 
@@ -115,6 +115,30 @@ export default Ember.Controller.extend({
 
   offsetChanged: Ember.observer('offset', function() {
     this.send('updateFeedbacks');
+  }),
+
+  statistic: Ember.observer('model.id', function() {
+    var self = this;
+    var host = this.store.adapterFor('application').get('host');
+    var namespace = this.store.adapterFor('application').get('namespace');
+    var url = [host, namespace, "feedbacks/statistic", this.get('model.id')].join('/');
+
+    Ember.$.getJSON(url).then(function(payload) {
+      var statistic = payload.statistic;
+      var tmp = [];
+      for(var i = 0; i <= 10; i++) {
+        if(statistic["" + i]) tmp[i] = statistic["" + i]; else tmp[i] = 0;
+      }
+
+      var sum = 0, cnt = 0;
+      for(var i = 0; i <= 10; i++) {
+        sum += tmp[i] * i;
+        cnt += tmp[i];
+      }
+
+      var avg = sum / cnt;
+      self.set('avgRating', avg);
+    });
   })
 
 });

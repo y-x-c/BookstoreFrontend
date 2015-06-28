@@ -28,8 +28,8 @@
             <tbody>
             {{#each customers as |customer|}}
                 <tr>
-                    <td>{{customer.id}}</td>
-                    <td>{{customer.username}}</td>
+                    <td>{{#link-to 'store.customer' customer}}{{customer.id}}{{/link-to}}</td>
+                    <td>{{#link-to 'store.customer' customer}}{{customer.username}}{{/link-to}}</td>
                     <td>{{customer.name}}</td>
                     <td>{{customer.email}}</td>
                     <td>{{customer.phone}}</td>

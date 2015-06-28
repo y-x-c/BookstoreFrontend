@@ -12,7 +12,7 @@
                     <img src={{model.img}} alt={{model.title}}>
                 </a>
             </div>
-            <div class="col-sm-6 col-sm-offset-1 book-info">
+            <div class="col-sm-4 col-sm-offset-1 book-info">
 
                 <p><strong>ISBN: </strong>{{model.id}}</p>
 
@@ -32,7 +32,7 @@
 
                 <p><strong>Keyword: </strong>{{model.Keyword}}</p>
 
-
+                <p><strong>Rating: </strong> {{show-star-rating rating=avgRating}} ( {{to-fixed fixed=2 num=avgRating}}/ 10 )</p>
             </div>
         </div>
 

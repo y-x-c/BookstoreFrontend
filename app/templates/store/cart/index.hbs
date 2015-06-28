@@ -19,13 +19,15 @@
                 </thead>
                 <tbody>
                 {{#each model as |item|}}
-                    <tr>
-                        <td>{{#link-to 'store.book' item.book}}{{item.book.id}}{{/link-to}}</td>
-                        <td>{{#link-to 'store.book' item.book}}{{item.book.title}}{{/link-to}}</td>
-                        <td>{{item.amount}}</td>
-                        <td>{{item.book.price}}</td>
-                        <td>{{a-mul-b a=item.amount b=item.book.price}}</td>
-                    </tr>
+                  {{#if item.amunt}}
+                      <tr>
+                          <td>{{#link-to 'store.book' item.book}}{{item.book.id}}{{/link-to}}</td>
+                          <td>{{#link-to 'store.book' item.book}}{{item.book.title}}{{/link-to}}</td>
+                          <td>{{item.amount}}</td>
+                          <td>{{item.book.price}}</td>
+                          <td>{{a-mul-b a=item.amount b=item.book.price}}</td>
+                      </tr>
+                  {{/if}}
                 {{/each}}
                 </tbody>
             </table>

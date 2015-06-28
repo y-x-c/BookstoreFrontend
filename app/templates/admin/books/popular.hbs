@@ -29,9 +29,9 @@
             <tbody>
             {{#each books as |book|}}
                 <tr>
-                    <th>{{#link-to 'store.book' book}}{{book.id}}{{/link-to}}</th>
+                    <td>{{#link-to 'store.book' book}}{{book.id}}{{/link-to}}</td>
                     <td>{{#link-to 'store.book' book}}{{book.title}}{{/link-to}}</td>
-                    <td>{{#each book.authors as |author|}}{{author.name}}  {{/each}}</td>
+                    <td>{{#each book.authors as |author|}}{{#link-to 'store.author' author}}{{author.name}}{{/link-to}}  {{/each}}</td>
                     <td>{{book.sales}}</td>
                 </tr>
             {{/each}}

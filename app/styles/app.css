@@ -152,7 +152,17 @@ body {
   background-color: #428bca;
 }
 
+.nav-sidebar .active:hover {
+  color: #fff;
+  background-color: #428bca;
+}
+
 .navbar-nav > li > a.active {
+  color: #555;
+  background-color: #e7e7e7;
+}
+
+.navbar-nav > li > a.active:hover {
   color: #555;
   background-color: #e7e7e7;
 }

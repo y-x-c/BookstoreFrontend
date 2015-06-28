@@ -7,9 +7,9 @@ export default Ember.Component.extend({
     var self = this;
     var id = '#' + self.get('_id');
 
-    this.$('div span').html(moment().subtract(7, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+    this.$('div.datetime-picker span').html(moment().subtract(7, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
 
-    this.$('div').daterangepicker({
+    this.$('div.datetime-picker').daterangepicker({
       format: 'MM/DD/YYYY',
       startDate: moment().subtract(7, 'days'),
       endDate: moment(),
@@ -46,7 +46,7 @@ export default Ember.Component.extend({
         firstDay: 1
       }
     }, function(start, end, label) {
-      Ember.$('div span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+      Ember.$('div.datetime-picker span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
       self.set('startDate', start);
       self.set('endDate', end);
     });
@@ -73,7 +73,7 @@ export default Ember.Component.extend({
   willDestroyElement: function() {
     this._super.apply(this, arguments);
     var id = '#' + this.get('_id');
-    if (this.state === 'inDOM' && this.$('div').data('daterangepicker')) {
+    if (this.state === 'inDOM' && this.$('div.datetime-picker').data('daterangepicker')) {
       this.$(id).daterangepicker('remove');
     }
   }
