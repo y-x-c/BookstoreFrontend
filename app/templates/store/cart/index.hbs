@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                 {{#each model as |item|}}
-                  {{#if item.amunt}}
+                  {{#if item.amount}}
                       <tr>
                           <td>{{#link-to 'store.book' item.book}}{{item.book.id}}{{/link-to}}</td>
                           <td>{{#link-to 'store.book' item.book}}{{item.book.title}}{{/link-to}}</td>
