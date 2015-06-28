@@ -129,10 +129,6 @@ body {
   margin-bottom: 15px;
 }
 
-.nav-sidebar-collapse {
-  height: 0px;
-}
-
 .nav-sidebar-collapse > li > a {
   display: block;
   padding: 10px;
