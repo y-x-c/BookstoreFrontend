@@ -66,6 +66,17 @@
     <div class="container">
         <h2 class="feature-head">And also thoughtful for managers...</h2>
         <p class="feature-body">Bookstore provides a lot of statistic data and charts for you to know your customers better. </p>
+        <p class="feature-body">root/root is now for you to have a try. </p>
+
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="admin-chart">
+              {{#if display}}
+                {{ember-chart type=type data=data options=options}}
+              {{else}}
+                {{ember-chart type=type data=data options=options}}
+              {{/if}}
+            </div>
+        </div>
     </div>
 </div>
 
