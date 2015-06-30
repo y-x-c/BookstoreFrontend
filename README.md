@@ -6,7 +6,7 @@ Online Demo: [http://chenyux.in/bookstore](http://chenyux.in/bookstore)
 
 Bookstore Backend: [http://github.com/Orthocenter/BookstoreBackend](http://github.com/Orthocenter/BookstoreBackend)
 
-Bookstore CLI: [http://github.com/Orthocenter/BookstoreCLI](http://github.com/Orthocenter/CLI)
+Bookstore CLI: [http://github.com/Orthocenter/BookstoreCLI](http://github.com/Orthocenter/BookstoreCLI)
 
 # Dependencies
 ### Front end
